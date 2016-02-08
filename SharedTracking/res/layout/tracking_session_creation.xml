@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/session_joining_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:padding="20dp">
+	    
+    	<TextView
+	    android:id="@+id/session_joining_description"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:textStyle="italic"
+	    android:text="@string/joined_session_description"/>
+    
+	    <LinearLayout
+	    android:id="@+id/session_joining_name_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:gravity="center">
+	    
+	            <TextView
+	        	android:id="@+id/session_joining_publicID_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_public_ID_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<EditText
+	        	android:id="@+id/session_joining_publicID_editText"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:layout_weight="2"/>
+	                  
+	            
+	    </LinearLayout>
+	    
+	  
+    
+</LinearLayout>
+    

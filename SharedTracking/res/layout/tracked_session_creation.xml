@@ -1,0 +1,356 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:id="@+id/tabhost">
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- TabWidget that will hold the Tabs -->
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Layout that will hold the content of the Tabs -->
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+         
+<!-- First Tab Immediate Creation -->
+
+	<LinearLayout
+	    android:id="@+id/immediate_creation_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:padding="20dp">
+	    
+	    <TextView
+	    android:id="@+id/immediate_hosted_session_description"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:textStyle="italic"
+	    android:text="@string/immediate_hosted_session_description"/>
+    
+	    <LinearLayout
+	    android:id="@+id/immediate_creation_name_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:gravity="center">
+	    
+	            <TextView
+	        	android:id="@+id/immediate_creation_name_setting_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_name_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<EditText
+	        	android:id="@+id/immediate_creation_name_setting_editText"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:layout_weight="3"/>
+	                  
+	            
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	    android:id="@+id/immediate_creation_rate_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:gravity="center">
+	    
+	            <TextView
+	        	android:id="@+id/immediate_creation_rate_setting_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_rate_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<Spinner
+	    		android:id="@+id/immediate_creation_rate_spinner"
+	    		android:layout_width="0dp"
+	    		android:layout_height="wrap_content"
+	    		android:layout_weight="1"/>
+	                  
+	            
+	    </LinearLayout>
+	    
+    
+   	 </LinearLayout>
+    
+
+<!-- Second Tab Immediate Creation -->
+	<ScrollView
+	android:id="@+id/prepared_creation_layout"
+	android:layout_width="match_parent"
+   	android:layout_height="match_parent">
+	
+	<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    android:padding="20dp">
+	           	
+	  	<TextView
+	    android:id="@+id/prepared_hosted_session_description"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textStyle="italic"
+	    android:text="@string/prepared_hosted_session_description"/>
+    
+	    <LinearLayout
+	    android:id="@+id/prepared_creation_name_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    
+	            <TextView
+	        	android:id="@+id/prepared_creation_name_setting_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_name_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<EditText
+	        	android:id="@+id/prepared_creation_name_setting_editText"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:layout_weight="3"/>
+	                  
+	            
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	    android:id="@+id/prepared_creation_rate_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    
+	            <TextView
+	        	android:id="@+id/prepared_creation_rate_setting_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_rate_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<Spinner
+	    		android:id="@+id/prepared_creation_rate_spinner"
+	    		android:layout_width="0dp"
+	    		android:layout_height="wrap_content" 
+	    		android:layout_weight="1"/>
+	                  
+	            
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	    android:id="@+id/prepared_creation_publicID_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    
+	            <TextView
+	        	android:id="@+id/prepared_creation_publicID_setting_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_public_ID_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<EditText
+	        	android:id="@+id/prepared_creation_publicID_setting_editText"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:layout_weight="2"/>
+	                  
+	            
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	    android:id="@+id/prepared_creation_password_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    
+	            <TextView
+	        	android:id="@+id/prepared_creation_password_setting_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_password_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<EditText
+	        	android:id="@+id/prepared_creation_password_setting_editText"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:layout_weight="3"/>
+	                  
+	            
+	    </LinearLayout>
+	
+		<TextView
+	    android:id="@+id/prepared_creation_startingDate_setting_title"
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="wrap_content"
+	  	android:text="@string/session_starting_time_title"/>
+	    
+	    <LinearLayout
+	    android:id="@+id/prepared_creation_startingDate_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	                
+	          	<DatePicker
+		        android:id="@+id/prepared_creation_startingDate_date_picker"
+		        android:layout_width="0dp"
+         		android:layout_height="wrap_content" 
+         		android:calendarViewShown="false"
+        		android:spinnersShown="true"
+        		android:layout_weight="1">
+    			</DatePicker>
+
+			    <TimePicker
+			  	android:id="@+id/prepared_creation_startingDate_time_picker"
+			    android:layout_width="0dp"
+        		android:layout_height="wrap_content" 
+       			android:layout_weight="1">
+    			</TimePicker>
+	                  
+	            
+	    </LinearLayout>
+	    
+	    <CheckBox
+        android:id="@+id/prepared_creation_endingDate_setting_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/session_ending_time_title" 
+        android:checked="true"/>
+
+
+	    <LinearLayout
+	    android:id="@+id/prepared_creation_endingDate_setting_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    
+
+	                
+	          	<DatePicker
+		        android:id="@+id/prepared_creation_endingDate_date_picker"
+		        android:layout_width="0dp"
+         		android:layout_height="wrap_content" 
+         		android:calendarViewShown="false"
+        		android:spinnersShown="true"
+        		android:layout_weight="1">
+    			</DatePicker>
+
+			    <TimePicker
+			  	android:id="@+id/prepared_creation_endingDate_time_picker"
+			    android:layout_width="0dp"
+        		android:layout_height="wrap_content" 
+       			android:layout_weight="1">
+    			</TimePicker>
+	                  
+	            
+	    </LinearLayout>
+	    	     
+    
+   	 </LinearLayout>
+   	 
+	</ScrollView>
+	
+	<!-- 3rd tab for session contribution -->
+	
+	<LinearLayout
+	    android:id="@+id/contribution_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:padding="20dp">
+	
+	    <TextView
+	    android:id="@+id/contribution_session_description"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:textStyle="italic"
+	    android:text="@string/contribution_session_description"/>
+	
+		     <LinearLayout
+		    android:id="@+id/contribution_publicID_layout"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:gravity="center">
+		    
+		            <TextView
+		        	android:id="@+id/contribution_publicID_title"
+		        	android:layout_width="0dp"
+		        	android:layout_height="wrap_content"
+		        	android:layout_gravity="center"
+		        	android:text="@string/session_public_ID_title"
+		        	android:layout_weight="1"/>
+		                
+		           	<EditText
+		        	android:id="@+id/contribution_publicID_editText"
+		        	android:layout_width="0dp"
+		        	android:layout_height="wrap_content"
+		        	android:layout_gravity="center"
+		        	android:layout_weight="2"/>
+		                  
+		            
+		    </LinearLayout>
+		    
+		  	<LinearLayout
+	    	android:id="@+id/contribution_password_layout"
+	    	android:layout_width="match_parent"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="horizontal"
+	    	android:gravity="center">
+	    
+	            <TextView
+	        	android:id="@+id/contribution_password_title"
+	        	android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:text="@string/session_password_title"
+	        	android:layout_weight="1"/>
+	                
+	           	<EditText
+	        	android:id="@+id/contribution_password_editText"
+	        	android:layout_width="0dp"
+	        	android:inputType="textPassword"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center"
+	        	android:layout_weight="3"/>
+	                  
+	            
+	    </LinearLayout>
+	    
+	
+	    
+	
+   	</LinearLayout> 
+	
+    </FrameLayout>
+
+    </LinearLayout>
+	
+	
+	</TabHost>

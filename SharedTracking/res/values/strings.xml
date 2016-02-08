@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SharedTracking</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    
+ <!-- menu activity strings -->
+ 	
+ 	<!-- main menu -->   
+	 <string name="menu_activity_title">Shared Tracking</string>    
+     <string name="new_tracked_session_button_string">Host New Tracking Session</string>
+     <string name="new_tracking_session_button_string">Join New Tracking Session</string>
+     <string name="empty_list">No Existing Session</string>
+     
+     <!-- creation dialog strings -->
+     
+     <string name="tracked_session_creation_title_dialogue">Hosted Session Creation</string>
+     <string name="tracked_session_creation_prepared_tab_title">Advanced</string>
+     <string name="tracked_session_creation_immediate_tab_title">Immediate</string>
+     <string name="tracked_session_contribution_tab_title">Contribute</string>
+     
+     <string name="tracking_session_creation_title_dialogue">Joining Session</string>
+     
+     <string name="session_name_title">Name</string>
+     <string name="session_rate_title">Upload Period</string>
+     <string name="session_starting_time_title">Starting Date-Time</string>
+     <string name="session_ending_time_title">Ending Date-Time</string>
+     <string name="session_public_ID_title">Public Identifier</string>
+     <string name="session_password_title">Password</string>
+     
+     <string name="immediate_hosted_session_description">Share your position in a simple way\:
+         just set a name and a sampling period, you will receive the token to share from the server
+         </string>
+
+     <string name="prepared_hosted_session_description">Advanced way to share your position that let
+         you define the token to share, the tracking validity period as well as a password so that 
+         other devices can be tracked within this same session
+         </string>
+     
+     <string name="contribution_session_description">Share your position as part of an existing tracking
+         session, you need the token and the password set for the session you want to join
+         </string>
+         
+     <string name="joined_session_description">Track someone\'s position that shared a session
+        token with you
+     	</string>
+     
+     <string name="session_creation_validation">OK</string>
+     <string name="session_creation_cancelation">Cancel</string>
+     
+    <string-array name="rates_array">
+        <item>5 sec.</item>
+        <item>10 sec.</item>
+        <item>30 sec.</item>
+        <item>1 min.</item>
+        <item>2 min.</item>
+        <item>5 min.</item>
+        <item>15 min.</item>
+        <item>30 min.</item>
+    </string-array>
+    
+    <!-- session deletion dialog -->
+    <string name="session_deletion_title_dialogue">Delete Session</string>
+    <string name="session_deletion_description">"Do you really want to delete session : "</string>
+    
+    
+    <string name="network_failure_message">Network Unreachable</string>
+    
+    <!-- session Items in List View -->
+    
+     <string name="item_starting_time_title">From</string>
+     <string name="item_ending_time_title">To</string>
+    
+    
+   <!-- session activity strings --> 
+    
+     <string name="session_activity_from_date">From</string>
+     <string name="session_activity_to_date">To</string>
+     <string name="session_activity_sample_number">Samples</string>
+     
+     <string name="public_ID_instructions">Send this token to the persons you want to share 
+         your location with</string>
+     <string name="button_copy_token_label">Copy</string>
+     <string name="button_stop_tracking">Stop Tracking</string>
+     
+     
+  	<!-- session activity setting strings -->
+	
+	<string name="pref_session_name_item">Change Session Name</string>
+	<string name="pref_session_rate_item">Change Upload Period</string>
+	<string name="pref_session_starting_date_item">Reschedule Starting Date</string>
+	<string name="pref_session_starting_time_item">Reschedule Starting Time</string>
+	<string name="pref_session_ending_date_item">Reschedule Ending Date</string>
+	<string name="pref_session_ending_time_item">Reschedule Ending Time</string>
+	
+	<string name="pref_session_name_title">New Session Name</string>
+	<string name="pref_session_rate_title">New Upload Period</string>
+	
+	<string name="pref_session_starting_date_title">New Starting Date</string>
+	<string name="pref_session_starting_time_title">New Starting Time</string>
+	
+	<string name="pref_session_starting_message">A new starting date-time can be set before
+	    session starts, and must be after the one currently set</string>
+	
+	<string name="pref_session_ending_date_title">New Ending Date</string>
+	<string name="pref_session_ending_time_title">New Ending Time</string>
+	
+		<string name="pref_session_ending_message">A new ending date-time can be set before
+	    session ends</string>
+	
+<!-- Colors -->
+	<color name="black">#000000</color>
+	<color name="blue">#3f51b5</color>
+	<color name="lightBlue">#DEF4FA</color>
+	<color name="gray">#EDEDED</color>
+	<color name="darkGray">#808080</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#32CD32</color>
+    <color name="yellow">#FFD700</color>
+    <color name="white">#FFFFFF</color>
+</resources>
