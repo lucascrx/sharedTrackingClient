@@ -21,7 +21,6 @@
                 android:layout_height="match_parent">
          
 <!-- First Tab Immediate Creation -->
-
 	<LinearLayout
 	    android:id="@+id/immediate_creation_layout"
 	    android:layout_width="match_parent"
@@ -119,7 +118,6 @@
 	        	android:id="@+id/prepared_creation_name_setting_title"
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
-	        	android:layout_gravity="center"
 	        	android:text="@string/session_name_title"
 	        	android:layout_weight="1"/>
 	                
@@ -127,7 +125,6 @@
 	        	android:id="@+id/prepared_creation_name_setting_editText"
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
-	        	android:layout_gravity="center"
 	        	android:layout_weight="3"/>
 	                  
 	            
@@ -143,7 +140,6 @@
 	        	android:id="@+id/prepared_creation_rate_setting_title"
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
-	        	android:layout_gravity="center"
 	        	android:text="@string/session_rate_title"
 	        	android:layout_weight="1"/>
 	                
@@ -166,7 +162,6 @@
 	        	android:id="@+id/prepared_creation_publicID_setting_title"
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
-	        	android:layout_gravity="center"
 	        	android:text="@string/session_public_ID_title"
 	        	android:layout_weight="1"/>
 	                
@@ -174,8 +169,7 @@
 	        	android:id="@+id/prepared_creation_publicID_setting_editText"
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
-	        	android:layout_gravity="center"
-	        	android:layout_weight="2"/>
+	        	android:layout_weight="3"/>
 	                  
 	            
 	    </LinearLayout>
@@ -184,13 +178,13 @@
 	    android:id="@+id/prepared_creation_password_setting_layout"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal">
+	    android:orientation="horizontal"
+	    android:layout_marginBottom="10dp">
 	    
 	            <TextView
 	        	android:id="@+id/prepared_creation_password_setting_title"
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
-	        	android:layout_gravity="center"
 	        	android:text="@string/session_password_title"
 	        	android:layout_weight="1"/>
 	                
@@ -312,7 +306,7 @@
 		        	android:layout_width="0dp"
 		        	android:layout_height="wrap_content"
 		        	android:layout_gravity="center"
-		        	android:layout_weight="2"/>
+		        	android:layout_weight="3"/>
 		                  
 		            
 		    </LinearLayout>

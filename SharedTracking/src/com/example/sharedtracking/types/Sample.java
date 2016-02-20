@@ -9,6 +9,12 @@ import android.os.Parcelable;
 
 public class Sample implements Serializable, Parcelable{	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	private Timestamp time;
 	private double latitude;
 	private double longitude;

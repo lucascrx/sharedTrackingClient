@@ -1,0 +1,24 @@
+# view AndroidManifest.xml #generated:46
+-keep class com.example.sharedtracking.MenuActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:59
+-keep class com.example.sharedtracking.TrackedActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:70
+-keep class com.example.sharedtracking.TrackingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:82
+-keep class com.example.sharedtracking.background.MainService { <init>(...); }
+
+# view res/layout/tracking_activity_session.xml #generated:153
+-keep class com.google.android.gms.maps.MapFragment { <init>(...); }
+
+# onClick res/layout/activity_menu.xml #generated:61
+-keepclassmembers class * { *** createHostedSession(...); }
+
+# onClick res/layout/activity_menu.xml #generated:47
+-keepclassmembers class * { *** joinSession(...); }
+
+# onClick res/layout/tracked_activity_session.xml #generated:163
+-keepclassmembers class * { *** stopTracking(...); }
+

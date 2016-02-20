@@ -1,14 +1,8 @@
 package com.example.sharedtracking;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,12 +13,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.inputs.SessionDeletionDialog;
 import com.example.sharedtracking.inputs.TrackedSessionCreationDialog;
@@ -32,14 +22,14 @@ import com.example.sharedtracking.inputs.TrackingSessionCreationDialog;
 import com.example.sharedtracking.session.HostedSession;
 import com.example.sharedtracking.session.JoinedSession;
 import com.example.sharedtracking.session.Session;
-import com.example.sharedtracking.session.SessionManager;
-import com.example.sharedtracking.views.ConstantGUI;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
+import com.st.sharedtracking.R;
 
 public class MenuActivity extends BaseActivity implements IInputListener{
 	
 	private SessionListAdapter adapter;
+	
+	/**counting how many hosted session are currently being created : for displaying or not progress bar*/
+	private int currentCreationsCounter = 0;
 	
     /**log Tag for debugging*/
 	@Override
@@ -52,12 +42,24 @@ public class MenuActivity extends BaseActivity implements IInputListener{
     	Log.d(this.getActivityClassName(),"resuming to activity");
     	requestGUI();
     }
+    
+    /**When Activity is destroyed, cancel notifications*/
+    @Override 
+    public void onDestroy(){
+    	Log.d(this.getActivityClassName(),"detroying menu activity");
+    	super.onDestroy();
+    }
 	
     /**When an object signals an update the activity informs the user*/
 	@Override
 	public void updateGUI() {
-		Log.d(this.getActivityClassName(),"updating GUI");
 		
+		Log.d(this.getActivityClassName(),"updating GUI");
+
+        //updating notifications
+        updateNotification();
+        
+        setTitle(R.string.menu_activity_title);
 		getActionBar().setIcon(R.drawable.ic_action_bar);
 		
 		ListView list = (ListView)findViewById(android.R.id.list);
@@ -86,7 +88,6 @@ public class MenuActivity extends BaseActivity implements IInputListener{
         OnItemLongClickListener itemLongClickListener = new OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View container, int position, long id) {
-                //TODO Display Dialog for Deletion and Supply index input as an argument.
             	Bundle args = new Bundle();
             	//position is incremented in order to avoid passing 0 value through intent
             	args.putInt("incrementedIndex", position+1);
@@ -101,8 +102,7 @@ public class MenuActivity extends BaseActivity implements IInputListener{
         
         // Setting the item click listener for the listview
         list.setOnItemLongClickListener(itemLongClickListener);
- 
-
+        
 	}
 	
 	public void onSessionSelected(int index){
@@ -118,7 +118,7 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 				TrackedActivity.startActivity(this,index);			
 			}
 			else if (selectedSession instanceof JoinedSession){
-				//launching Traking Activity
+				//launching Tracking Activity
 				Log.d(getActivityClassName(),"launching new tracking activity");
 				TrackingActivity.startActivity(this,index);		
 			}else{
@@ -132,9 +132,6 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 	
 	public void createHostedSession(View v){
 		if (handleUserLocationDynamicPermission()){
-			//check if location is set in phone settings
-			//TODO
-			
 			TrackedSessionCreationDialog dialog = new TrackedSessionCreationDialog();
 			dialog.show(getFragmentManager(), "Tracked Fragment Dialog");
 		}
@@ -147,6 +144,7 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 	@Override
 	public void onImmediateSessionCreationReady(String name,int rate) {
 		Log.d(this.getActivityClassName()," called by dialog for Immediate Hosted Session Creation");
+		showProgressBar();
 		this.manager.createNewImmediateSession(name,rate);
 		
 	}
@@ -154,12 +152,14 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 	public void onPreparedSessionCreationReady(String name, int rate, String publicID, String password,
 			String startDate, String endDate) {
 		Log.d(this.getActivityClassName()," called by dialog for Prepared Hosted Session Creation");
+		showProgressBar();
 		this.manager.createNewPreparedSession(name, publicID, password, startDate, endDate, rate);
 		
 	}
 	@Override
 	public void onSessionContributionReady(String publicID, String password) {
 		Log.d(this.getActivityClassName()," called by dialog for Session Contribution");
+		showProgressBar();
 		this.manager.contributeToExistingSession(publicID, password);
 	}
 	@Override
@@ -223,7 +223,33 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 	}
 	
 
-	
+	@Override
+	public void onBackPressed() {
+		moveTaskToBack(true);
+	}
 
+	public void notifyHostedSessionCreation(){
+		dismissProgressBar();
+	}
+	
+	/**make appear the progress bar if no hosted session are being created*/
+	public void showProgressBar(){
+		if(this.currentCreationsCounter==0){
+	        final ActionBar actionBar = getActionBar();	    
+	        actionBar.setCustomView(R.layout.progress_bar_layout);
+	        actionBar.setDisplayShowCustomEnabled(true);
+		}
+		this.currentCreationsCounter++;
+	}
+	
+	public void dismissProgressBar(){
+		this.currentCreationsCounter--;
+		if(this.currentCreationsCounter<=0){
+			final ActionBar actionBar = getActionBar();
+			actionBar.setDisplayShowCustomEnabled(false);
+			this.currentCreationsCounter=0;
+		}
+	}
+	
 	
 }

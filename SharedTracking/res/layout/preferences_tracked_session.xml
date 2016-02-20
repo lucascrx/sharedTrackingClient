@@ -1,45 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Preference setting menu for tracked sessions -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    		android:orientation="vertical"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content">
 
     <!-- Name Setting --> 
-    <Preference
-        android:key="pref_session_name"
-        android:title="@string/pref_session_name_item"
-        android:dialogTitle="@string/pref_session_name_item"/>
+    <Button
+        android:id="@+id/pref_session_name"
+        android:text="@string/pref_session_name_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+    	android:paddingStart="5dp"
+    	android:paddingEnd="10dp"
+    	android:paddingLeft="5dp"
+    	android:paddingRight="10dp"
+        android:background="@drawable/preference_button_background"/>
     
     
     <!-- Rate Setting -->
-    <Preference
-        android:key="pref_session_rate"
-        android:title="@string/pref_session_rate_item"
-        android:dialogTitle="@string/pref_session_rate_item" />
+    <Button
+        android:id="@+id/pref_session_rate"
+        android:text="@string/pref_session_rate_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+       	android:paddingStart="5dp"
+    	android:paddingEnd="10dp"
+    	android:paddingLeft="5dp"
+    	android:paddingRight="10dp"
+        android:background="@drawable/preference_button_background"/>
     
     <!-- Starting Time Setting -->
-    <Preference
-	    android:key="pref_starting_time"
-	    android:title="@string/pref_session_starting_time_item"
-	    android:dialogTitle="@string/pref_session_starting_time_item"/>
+    <Button
+	    android:id="@+id/pref_starting_time"
+	    android:text="@string/pref_session_starting_time_item"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+       	android:paddingStart="5dp"
+    	android:paddingEnd="10dp"
+    	android:paddingLeft="5dp"
+    	android:paddingRight="10dp"
+        android:background="@drawable/preference_button_background"/>
     
     <!-- Starting Date Setting -->
-    <Preference
-	    android:key="pref_starting_date"
-	    android:title="@string/pref_session_starting_date_item"
-	    android:dialogTitle="@string/pref_session_starting_date_item"/>
+    <Button
+	    android:id="@+id/pref_starting_date"
+	    android:text="@string/pref_session_starting_date_item"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+       	android:paddingStart="5dp"
+    	android:paddingEnd="10dp" 
+    	
+    	android:paddingLeft="5dp"
+    	android:paddingRight="10dp"
+        android:background="@drawable/preference_button_background"/>
     
     <!-- Ending Time Setting -->
-    <Preference
-	    android:key="pref_ending_time"
-	    android:title="@string/pref_session_ending_time_item"
-	    android:dialogTitle="@string/pref_session_ending_time_item"/>
+    <Button
+	    android:id="@+id/pref_ending_time"
+	    android:text="@string/pref_session_ending_time_item"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+       	android:paddingStart="5dp"
+    	android:paddingEnd="10dp"
+    	android:paddingLeft="5dp"
+    	android:paddingRight="10dp"
+        android:background="@drawable/preference_button_background"/>
     
     <!-- Ending Date Setting -->
-    <Preference
-	    android:key="pref_ending_date"
-	    android:title="@string/pref_session_ending_date_item"
-	    android:dialogTitle="@string/pref_session_ending_date_item"/>
+    <Button
+	    android:id="@+id/pref_ending_date"
+	    android:text="@string/pref_session_ending_date_item"
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+       	android:paddingStart="5dp"
+    	android:paddingEnd="10dp"
+    	
+    	android:paddingLeft="5dp"
+    	android:paddingRight="10dp"
+        android:background="@drawable/preference_button_background"/>
     
     
     
-</PreferenceScreen>
+</LinearLayout>

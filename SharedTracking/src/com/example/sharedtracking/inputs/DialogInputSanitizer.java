@@ -12,18 +12,18 @@ public class DialogInputSanitizer {
 	 */
 	public static void sanitizeInputAsPublicID(String input) throws DialogInputException{
 		if(input==null || !input.matches( ".{25,50}" )){
-			throw new DialogInputException("'"+input+"' doesn't have a valid ID format");
+			throw new DialogInputException("Token must contain from 25 to 50 characters");
 		}
 	}
 	
 	/**Sanitizes user provided names as session and device name 
-	 * Condition : .{4,255}
+	 * Condition : .{4,50}
 	 * @param input
 	 * @throws DialogInputException
 	 */
 	public static void sanitizeInputAsName(String input) throws DialogInputException{
-		if(input==null || !input.matches( ".{4,255}" )){
-			throw new DialogInputException("'"+input+"' doesn't have a valid Name format");
+		if(input==null || !input.matches( ".{4,50}" )){
+			throw new DialogInputException("Session name must contain from 4 to 50 characters ");
 		}
 		
 	}
@@ -40,13 +40,13 @@ public class DialogInputSanitizer {
 	}
 	
 	/**Sanitizes user provided password
-	 *Condition : .{10,255}
+	 *Condition : .{10,50}
 	 * @param input
 	 * @throws DialogInputException
 	 */
 	public static void sanitizeInputAsPassword(String input) throws DialogInputException{
-		if(input==null || !input.matches( ".{10,255}" )){
-			throw new DialogInputException("'"+input+"' doesn't have a valid Password format");
+		if(input==null || !input.matches( ".{10,50}" )){
+			throw new DialogInputException("Password must contain from 10 to 50 characters");
 		}
 	}
 	
@@ -97,7 +97,7 @@ public class DialogInputSanitizer {
 		java.util.Date date= new java.util.Date();
 		Timestamp now = new Timestamp(date.getTime());
 		if(newStartTime==null || now.after(oldStartTime) || oldStartTime.after(newStartTime)){
-			throw new DialogInputException("Start Time doesn't fullfil the requirements");
+			throw new DialogInputException("Invalid Operation on Starting Time");
 		}
 	}
 	
@@ -109,11 +109,11 @@ public class DialogInputSanitizer {
 		Timestamp now = new Timestamp(date.getTime());
 		if(oldEndTime!=null){
 			if(newEndTime==null || now.after(oldEndTime) || now.after(newEndTime)){
-				throw new DialogInputException("End Time doesn't fullfil the requirements");
+				throw new DialogInputException("Invalid Operation on Ending Time");
 			}
 		}else{
 			if(newEndTime==null || now.after(newEndTime)){
-				throw new DialogInputException("End Time doesn't fullfil the requirements");
+				throw new DialogInputException("Invalid Operation on Ending Time");
 			}
 		}
 	}

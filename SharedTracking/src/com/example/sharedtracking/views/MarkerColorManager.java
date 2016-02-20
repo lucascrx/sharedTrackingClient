@@ -2,8 +2,6 @@ package com.example.sharedtracking.views;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import android.R.color;
 import android.graphics.Color;
 import android.util.Log;
 

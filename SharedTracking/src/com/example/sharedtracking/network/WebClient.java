@@ -1,6 +1,5 @@
 package com.example.sharedtracking.network;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 
 import android.util.Log;
@@ -98,12 +97,12 @@ public class WebClient {
 	}
 	
 	/**Session Starting Time Update*/
-	public static void updateStartingTime(String privateID, Timestamp start, StartingTimeUpdateOperationCallback callback){
+	public static void updateStartingTime(String privateID, String start, StartingTimeUpdateOperationCallback callback){
 		Log.d(Log_Tag,"preparing request for starting time update");
 		//creating the POST request to send
 		HashMap<String,String> parameters = new HashMap<String,String>();
 		parameters.put(Constants.POST_PARAM_LABEL_PRIVATE_ID, privateID);
-		parameters.put(Constants.POST_PARAM_LABEL_STARTING_TIME, start.toString());
+		parameters.put(Constants.POST_PARAM_LABEL_STARTING_TIME, start);
 		//creating the URL to reach
 		String url = Constants.SERVER_ADDRESS+Constants.UPDATE_SESSION_STARTING_TIME_PATH;
 		//create HTTPSender Object
@@ -113,12 +112,12 @@ public class WebClient {
 	}
 	
 	/**Session ending Time Update*/
-	public static void updateEndingTime(String privateID, Timestamp end, EndingTimeUpdateOperationCallback callback){
+	public static void updateEndingTime(String privateID, String end, EndingTimeUpdateOperationCallback callback){
 		Log.d(Log_Tag,"preparing request for ending time update");
 		//creating the POST request to send
 		HashMap<String,String> parameters = new HashMap<String,String>();
 		parameters.put(Constants.POST_PARAM_LABEL_PRIVATE_ID, privateID);
-		parameters.put(Constants.POST_PARAM_LABEL_ENDING_TIME, end.toString());
+		parameters.put(Constants.POST_PARAM_LABEL_ENDING_TIME, end);
 		//creating the URL to reach
 		String url = Constants.SERVER_ADDRESS+Constants.UPDATE_SESSION_ENDING_TIME_PATH;
 		//create HTTPSender Object

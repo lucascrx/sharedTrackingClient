@@ -1,8 +1,6 @@
 package com.example.sharedtracking.network;
 
-import com.example.sharedtracking.response.CreationResponse;
 import com.example.sharedtracking.response.SynchronizationResponse;
-import com.example.sharedtracking.session.ISessionCreationListener;
 import com.example.sharedtracking.session.ISessionRefreshListener;
 import com.example.sharedtracking.types.Deserializer;
 

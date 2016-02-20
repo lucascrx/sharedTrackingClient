@@ -1,13 +1,13 @@
 package com.example.sharedtracking.inputs;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.Locale;
 
-import com.example.sharedtracking.BaseActivity;
-import com.example.sharedtracking.R;
+import com.st.sharedtracking.R;
 import com.example.sharedtracking.IInputListener;
+import com.example.sharedtracking.constants.Constants;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -51,7 +51,7 @@ public class TrackedSessionCreationDialog extends DialogFragment {
         builder.setView(view);
         //set yes and cancel buttons
         builder.setPositiveButton(R.string.session_creation_validation, new DialogInterface.OnClickListener() {
-            @SuppressWarnings({ "deprecation", "deprecation" })
+            @SuppressWarnings({ "deprecation" })
 			@Override
             public void onClick(DialogInterface dialog, int id) {
             	try{
@@ -105,7 +105,9 @@ public class TrackedSessionCreationDialog extends DialogFragment {
 		        		startCalendar.set(startyear,startmonth,startday,starthour, startminute);
 		        		Timestamp startingDate = new Timestamp(startCalendar.getTimeInMillis());
 		            	DialogInputSanitizer.sanitizeInputAsStartingDateAlone(startingDate);
-		            	String typedStartDate = startingDate.toString();
+		            	Locale current = getActivity().getResources().getConfiguration().locale;
+		            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
+		            	String typedStartDate = dateFormat.format(startingDate);
 		            	//retreiving ending date
 		            	CheckBox checkEndTime = (CheckBox) view.findViewById(R.id.prepared_creation_endingDate_setting_checkBox);
 		            	String typedEndDate = null;
@@ -123,7 +125,8 @@ public class TrackedSessionCreationDialog extends DialogFragment {
 			        		endCalendar.set(endyear,endmonth,endday,endhour, endminute);
 			        		Timestamp endingDate = new Timestamp(endCalendar.getTimeInMillis());
 			            	DialogInputSanitizer.sanitizeInputAsEndingDate(endingDate,startingDate);
-			            	typedEndDate = endingDate.toString();
+			            	typedEndDate = dateFormat.format(endingDate);
+			            	
 		            	}
 		            	//calling callback
 		                IInputListener callingActivity = (IInputListener) getActivity();
@@ -175,7 +178,7 @@ public class TrackedSessionCreationDialog extends DialogFragment {
         TabHost.TabSpec immediateCreationTab = mTabHost.newTabSpec(ImmediateCreationTabTag);  
         immediateCreationTab.setIndicator(getString(R.string.tracked_session_creation_immediate_tab_title));  
         immediateCreationTab.setContent(R.id.immediate_creation_layout);  
-        mTabHost.addTab(immediateCreationTab);  
+          
         
         // Create Prepared Creation Tab  
         TabHost.TabSpec preparedCreationTab = mTabHost.newTabSpec(PreparedCreationTabTag);  
@@ -233,10 +236,12 @@ public class TrackedSessionCreationDialog extends DialogFragment {
         // Apply the adapter to the spinner
         spinnerImmediateCreation.setAdapter(adapter);
         spinnerPreparedCreation.setAdapter(adapter);
+        
+        mTabHost.addTab(immediateCreationTab);
         mTabHost.addTab(preparedCreationTab);  
         
         //Create contribution tab
-        TabHost.TabSpec contributionTab = mTabHost.newTabSpec(ImmediateCreationTabTag);  
+        TabHost.TabSpec contributionTab = mTabHost.newTabSpec(ContributionTabTag);  
         contributionTab.setIndicator(getString(R.string.tracked_session_contribution_tab_title));  
         contributionTab.setContent(R.id.contribution_layout);  
         mTabHost.addTab(contributionTab); 

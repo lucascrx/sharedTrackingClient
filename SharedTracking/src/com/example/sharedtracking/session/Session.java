@@ -4,23 +4,19 @@ import java.sql.Timestamp;
 
 import android.location.Location;
 import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.sharedtracking.ObjectChangingCallback;
 import com.example.sharedtracking.constants.Constants;
-import com.example.sharedtracking.network.ReadingOperationCallback;
 import com.example.sharedtracking.network.SessionRefreshCallback;
 import com.example.sharedtracking.network.WebClient;
 import com.example.sharedtracking.response.ResponseException;
 import com.example.sharedtracking.response.SynchronizationResponse;
-import com.example.sharedtracking.types.SampleList;
 import com.example.sharedtracking.types.SessionMetaData;
-import com.google.android.gms.maps.GoogleMap;
 
 
 /**Tracking Session either read or updated by the user*/
-public abstract class Session implements ISessionRefreshListener, Parcelable{
+public abstract class Session implements ISessionRefreshListener{
 	
 	/**Log Tag for debugging purposes*/
 	private final static String Log_Tag = "Session : ";

@@ -4,13 +4,17 @@ import com.example.sharedtracking.background.LocationAsynchronousResolver;
 import com.example.sharedtracking.background.MainService;
 import com.example.sharedtracking.background.MainService.MainBinder;
 import com.example.sharedtracking.constants.Constants;
+import com.example.sharedtracking.session.HostedSession;
+import com.example.sharedtracking.session.JoinedSession;
 import com.example.sharedtracking.session.Session;
 import com.example.sharedtracking.session.SessionManager;
 import com.example.sharedtracking.views.ConstantGUI;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationSettingsStates;
-
+import com.st.sharedtracking.R;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +24,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 public abstract class BaseActivity extends FragmentActivity implements IGraphicalListener{
@@ -49,7 +52,6 @@ public abstract class BaseActivity extends FragmentActivity implements IGraphica
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
-        	Log.d(getActivityClassName(),"Activity now disconnected from the service");
         	isMainServiceBound = false;
         }
     };
@@ -67,6 +69,7 @@ public abstract class BaseActivity extends FragmentActivity implements IGraphica
         Log.d(this.getActivityClassName(),"creating Activity");
         
         //starting service
+        startService(new Intent(this, MainService.class));
         Log.d(this.getActivityClassName(),"binding to Main Service");
         Intent intent = new Intent(this, MainService.class);
         bindService(intent, mainConnection, Context.BIND_AUTO_CREATE);
@@ -75,26 +78,17 @@ public abstract class BaseActivity extends FragmentActivity implements IGraphica
     /**When Activity is destroyed, it gets unbound to service*/
     @Override 
     public void onDestroy(){
-    	super.onDestroy();
+    	
     	
     	Log.d(this.getActivityClassName(),"destroying Activity");
         if (isMainServiceBound) {
             unbindService(mainConnection);
             isMainServiceBound = false;
         }
+        super.onDestroy();
     }
     
-    /**TODO delete at the end*/
-    @Override
-    public void onPause(){
-    	super.onPause();
-    /*	
-    	Log.d(this.getActivityClassName(),"pausing Activity");
-        if (isMainServiceBound) {
-            unbindService(mainConnection);
-            isMainServiceBound = false;
-        }*/
-    }
+
     
     public void requestGUI(){
     	Log.d(this.getActivityClassName(),"requesting GUI");
@@ -139,12 +133,11 @@ public abstract class BaseActivity extends FragmentActivity implements IGraphica
 		return this.manager;
 	}
 	
-	/**Location Resolver may request the current activty to display location setting dialog
+	/**Location Resolver may request the current activity to display location setting dialog
 	 * when location is not enabled*/
 	public void displayLocationSettingDialog(Status status){
 		Log.d(this.getActivityClassName(),"Displaying dialog for location setting");
 		try{
-			//TODO check if already displayed
 	        status.startResolutionForResult(this, Constants.REQUEST_CHECK_LOCATION_SETTINGS);
 	    } catch (IntentSender.SendIntentException e) {
 	        // Ignore the error.
@@ -190,5 +183,82 @@ public abstract class BaseActivity extends FragmentActivity implements IGraphica
 	public void notifyFailedUpdateOperation(String ParameterName) {
 		Toast.makeText(this, ConstantGUI.TOAST_LABEL_PARAMETER_UPDATE_FAILURE+ParameterName, Toast.LENGTH_LONG).show();
 	}
+	
+	
+	//Handling Notifications
+	/**Create, modify and delete notification : display to the user the number of tracked
+	 * and tracking session in RUNNING state only*/
+	public void updateNotification(){	
+		
+		NotificationManager notifManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		//figure out session manager state
+		//counter for running hosted sessions
+		int runningHostedCounter=0;
+		//counter for running joined sessions
+		int runningJoinedCounter=0;
+		for(Session session : this.manager.getSessionList()){
+			//only counting running sessions
+			if(session.getStatus()==Constants.SESSION_STATUS_RUNNING){
+				if(session instanceof HostedSession){
+					runningHostedCounter++;
+				}else if (session instanceof JoinedSession){
+					runningJoinedCounter++;
+				}
+			}
+		}
+		
+		int total = runningHostedCounter+runningJoinedCounter;
+		if(total==0){
+			notifManager.cancel(Constants.NOTIFICATION_ID);
+		}else{
+			//insert or modify notification
+			
+			//setting strings
+			String notifTitle;
+			if(total>1){
+				notifTitle = getString(R.string.notification_title_plural);
+			}else{
+				notifTitle = getString(R.string.notification_title_singular);
+			}
+
+			String textHosted;
+			String textJoined;
+			
+			if(runningHostedCounter>1){
+				textHosted = getString(R.string.notification_text_tracked_session_plural);
+			}else{
+				textHosted = getString(R.string.notification_text_tracked_session_singular);
+			}
+			if(runningJoinedCounter>1){
+				textJoined = getString(R.string.notification_text_tracking_session_plural);
+			}else{
+				textJoined = getString(R.string.notification_text_tracking_session_singular);
+			}
+			//formatting
+			String notifText;
+			notifText = runningHostedCounter+textHosted+" and "+runningJoinedCounter+textJoined;
+		
+			// Sets an ID for the notification, so it can be updated
+			Notification.Builder notifBuilder = new Notification.Builder(this)
+			    										.setContentTitle(notifTitle)
+			    										.setContentText(notifText)
+			    										.setSmallIcon(R.drawable.ic_notification);
+			// Creates an explicit intent for an Activity in your app
+			Intent notifIntent = new Intent(this, MenuActivity.class);
+			//resuming to the existing application
+			notifIntent.setAction(Intent.ACTION_MAIN);
+			notifIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+			//notifIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			PendingIntent pending = PendingIntent.getActivity(this, 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			notifBuilder.setContentIntent(pending);
+
+		
+		    notifManager.notify(Constants.NOTIFICATION_ID,notifBuilder.build());
+		}
+
+		
+	}
+	
 
 }

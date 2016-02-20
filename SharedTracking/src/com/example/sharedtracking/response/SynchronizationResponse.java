@@ -1,7 +1,5 @@
 package com.example.sharedtracking.response;
 
-import java.sql.Timestamp;
-
 import com.example.sharedtracking.types.SessionMetaData;
 
 /**Response message for synchronization query*/

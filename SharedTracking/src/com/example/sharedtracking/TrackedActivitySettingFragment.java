@@ -1,37 +1,39 @@
 package com.example.sharedtracking;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-
+import java.util.Locale;
+import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.inputs.DialogInputConverter;
 import com.example.sharedtracking.inputs.DialogInputException;
 import com.example.sharedtracking.inputs.DialogInputSanitizer;
 import com.example.sharedtracking.session.HostedSession;
 import com.example.sharedtracking.views.ConstantGUI;
-
-import android.graphics.Color;
+import com.st.sharedtracking.R;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceFragment;
-import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 
-public class TrackedActivitySettingFragment extends PreferenceFragment{
+public class TrackedActivitySettingFragment extends DialogFragment{
 	
 	/**Log Tag For debugging purposes*/
 	private final static String LogTag = "Tracked Activity Preferences";
@@ -39,42 +41,53 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
 	/**Hosted Session handled by the fragment*/
 	private HostedSession updatedSession = null;
 	
+	 @Override
+	 public Dialog onCreateDialog(Bundle savedInstanceState) {
+	        Dialog dialog = super.onCreateDialog(savedInstanceState);
+	        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	        dialog.setCanceledOnTouchOutside(true);
+	        return dialog;
+	 }
+	 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    	      Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Load the preferences from an XML resource
-        addPreferencesFromResource(R.layout.preferences_tracked_session);
+
+        getDialog().getWindow().setGravity(Gravity.END | Gravity.TOP);
+        
+        View view = inflater.inflate(R.layout.preferences_tracked_session, container, false);
+        
+ 
         //retrieving session object
         updatedSession = (HostedSession) ((TrackedActivity) getActivity()).getSessionManager().getSessionList()
         		.get(((TrackedActivity) getActivity()).getSessionIndex());
 
         
         	//NameEditTextPreference Initialization
-            Preference sessionNamePref = (Preference) findPreference("pref_session_name");
-            sessionNamePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        	Button sessionNamePref = (Button) view.findViewById(R.id.pref_session_name);
+            sessionNamePref.setOnClickListener(new OnClickListener() {
     		    @Override
-    		    public boolean onPreferenceClick(Preference preference) {
+    		    public void onClick(View v) {
     		        try {
     		        	showSessionNameDialog();	        	
     				} catch (GraphicalException e) {
     					e.printStackTrace();
-    				}
-    		        return false;	
+    				}	
     		    }
     		});
  
         
     	//RateListPreference Initialization
-        Preference sessionRatePref = (Preference) findPreference("pref_session_rate");
-        sessionRatePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Button sessionRatePref = (Button) view.findViewById(R.id.pref_session_rate);
+        sessionRatePref.setOnClickListener(new OnClickListener() {
 		    @Override
-		    public boolean onPreferenceClick(Preference preference) {
+		    public void onClick(View v) {
 		        try {
 		        	showUploadRateDialog();	        	
 				} catch (GraphicalException e) {
 					e.printStackTrace();
 				}
-		        return false;	
 		    }
 		});
 
@@ -82,61 +95,58 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
         
         
         //Adding Date Picker for Starting Date
-		Preference startingDatePref = (Preference) findPreference("pref_starting_date");
-		startingDatePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+		Button startingDatePref = (Button) view.findViewById(R.id.pref_starting_date);
+		startingDatePref.setOnClickListener(new OnClickListener() {
 		    @Override
-		    public boolean onPreferenceClick(Preference preference) {
+		    public void onClick(View v) {
 		        try {
 					showStartingDateDialog();
 				} catch (GraphicalException e) {
 					e.printStackTrace();
 				}
-		        return false;	
 		    }
 		});
 		
 		//Adding Time Picker for Starting Time
-		Preference startingTimePref = (Preference) findPreference("pref_starting_time");
-		startingTimePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+		Button startingTimePref = (Button) view.findViewById(R.id.pref_starting_time);
+		startingTimePref.setOnClickListener(new OnClickListener() {
 		    @Override
-		    public boolean onPreferenceClick(Preference preference) {
+		    public void onClick(View v) {
 		        try {
 					showStartingTimeDialog();
 				} catch (GraphicalException e) {
 					e.printStackTrace();
 				}
-		        return false;	
 		    }
 		});
 		
 		
 		//Adding Date Picker for Ending Date
-		Preference endingDatePref = (Preference) findPreference("pref_ending_date");
-		endingDatePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+		Button endingDatePref = (Button) view.findViewById(R.id.pref_ending_date);
+		endingDatePref.setOnClickListener(new OnClickListener() {
 		    @Override
-		    public boolean onPreferenceClick(Preference preference) {
+		    public void onClick(View v) {
 		        try {
 					showEndingDateDialog();
 				} catch (GraphicalException e) {
 					e.printStackTrace();
-				}
-		        return false;	
+				}	
 		    }
 		});
 		
 		//Adding Time Picker for Ending Time
-		Preference endingTimePref = (Preference) findPreference("pref_ending_time");
-		endingTimePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+		Button endingTimePref = (Button) view.findViewById(R.id.pref_ending_time);
+		endingTimePref.setOnClickListener(new OnClickListener() {
 		    @Override
-		    public boolean onPreferenceClick(Preference preference) {
+		    public void onClick(View v) {
 		        try {
 					showEndingTimeDialog();
 				} catch (GraphicalException e) {
 					e.printStackTrace();
 				}
-		        return false;	
 		    }
 		});
+		return view;
         
         
         
@@ -153,7 +163,6 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
     /**Pops up session name setting dialog and sets up corresponding listener
      * @throws GraphicalException */
     private void showSessionNameDialog() throws GraphicalException {
-    	//TODO find out current selected rate!
     	if(this.updatedSession==null){
     		throw new GraphicalException("Upload rate update : Updated Session is null");
     	}
@@ -193,7 +202,6 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
     /**Pops up upload rate setting dialog and sets up corresponding listener
      * @throws GraphicalException */
     private void showUploadRateDialog() throws GraphicalException {
-    	//TODO find out current selected rate!
     	if(this.updatedSession==null){
     		throw new GraphicalException("Upload rate update : Updated Session is null");
     	}
@@ -246,7 +254,10 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
 	        		}else{
 	        			DialogInputSanitizer.sanitizeStartTime(newStartingTimestamp,endingTimestamp);
 	        		}
-	        		updatedSession.updateStartingTime(newStartingTimestamp);
+	            	Locale current = getActivity().getResources().getConfiguration().locale;
+	            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
+	            	String newStartingTimestampString = dateFormat.format(newStartingTimestamp);	
+	        		updatedSession.updateStartingTime(newStartingTimestampString);
 	        	}catch(DialogInputException e){
 	        		e.printStackTrace();
 	        		//printing what was wrong to user
@@ -290,7 +301,12 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
 	        			DialogInputSanitizer.sanitizeStartTime(newStartingTimestamp,endingTimestamp);
 	        		}
 	        		DialogInputSanitizer.verifyStartingTimeSynchro(newStartingTimestamp,updatedSession.getStartingTime());
-	        		updatedSession.updateStartingTime(newStartingTimestamp);
+	        		
+	            	Locale current = getActivity().getResources().getConfiguration().locale;
+	            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
+	            	String newStartingTimestampString = dateFormat.format(newStartingTimestamp);	
+	        		updatedSession.updateStartingTime(newStartingTimestampString);
+	        		
 	        	}catch(DialogInputException e){
 	        		e.printStackTrace();
 	        		//printing what was wrong to user
@@ -335,7 +351,12 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
 	            	newCalendar.set(newYear, newMonth, newDay, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE));
 	            	Timestamp newEndingTimestamp = new Timestamp(newCalendar.getTimeInMillis());
 	            	DialogInputSanitizer.sanitizeInputAsEndingDate(newEndingTimestamp,updatedSession.getStartingTime());
-	            	updatedSession.updateEndingTime(newEndingTimestamp);
+	            	
+	            	Locale current = getActivity().getResources().getConfiguration().locale;
+	            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
+	            	String newEndingTimestampString = dateFormat.format(newEndingTimestamp);	
+	        		updatedSession.updateEndingTime(newEndingTimestampString);
+	            	
 	        	}catch(DialogInputException e){
 	        		e.printStackTrace();
 	        		//printing what was wrong to user
@@ -381,7 +402,11 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
 	        		Timestamp newEndingTimestamp = new Timestamp(newCalendar.getTimeInMillis());
 	        		DialogInputSanitizer.sanitizeInputAsEndingDate(newEndingTimestamp,updatedSession.getStartingTime());
 	        		DialogInputSanitizer.verifyEndingTimeSynchro(newEndingTimestamp,updatedSession.getEndingTime());
-	        		updatedSession.updateEndingTime(newEndingTimestamp);
+	        		
+	        		Locale current = getActivity().getResources().getConfiguration().locale;
+	            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
+	            	String newEndingTimestampString = dateFormat.format(newEndingTimestamp);
+	            	updatedSession.updateEndingTime(newEndingTimestampString);
 	        	}catch(DialogInputException e){
 	        		e.printStackTrace();
 	        		//printing what was wrong to user
@@ -408,7 +433,6 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
     	}catch(GraphicalException e){
     		e.printStackTrace();
     	} catch (DialogInputException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -426,7 +450,6 @@ public class TrackedActivitySettingFragment extends PreferenceFragment{
     	}catch(GraphicalException e){
     		e.printStackTrace();
     	} catch (DialogInputException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

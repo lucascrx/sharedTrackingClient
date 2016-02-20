@@ -28,4 +28,9 @@ public class ObjectChangingCallback {
 	public void onSuccessStatusReturnedOperation(String updatedParamName){
 		this.listener.notifySuccessfulUpdateOperation(updatedParamName);
 	}
+	
+	/**function called when an hosted session has been created on server**/
+	public void onHostedSessionCreated(){
+		this.listener.notifyHostedSessionCreation();
+	}
 }

@@ -4,16 +4,15 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
-
+import java.util.TimeZone;
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.session.HostedSession;
 import com.example.sharedtracking.session.JoinedSession;
 import com.example.sharedtracking.session.Session;
 import com.example.sharedtracking.views.ConstantGUI;
-
+import com.st.sharedtracking.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +56,7 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
 
 		Locale current = getContext().getResources().getConfiguration().locale;
 		SimpleDateFormat sdf = new SimpleDateFormat(ConstantGUI.TIME_DATE_FORMATTING_STRING,current);
+		sdf.setTimeZone(TimeZone.getDefault());
 		
 		//Setting Starting time
 		Timestamp timestampStart = session.getStartingTime();

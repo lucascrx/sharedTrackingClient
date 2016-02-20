@@ -3,7 +3,6 @@ package com.example.sharedtracking.background;
 import java.util.ArrayList;
 
 import com.example.sharedtracking.BaseActivity;
-import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.session.Session;
 import com.example.sharedtracking.views.ConstantGUI;
 import com.google.android.gms.common.ConnectionResult;
@@ -20,9 +19,7 @@ import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -31,7 +28,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -93,6 +89,12 @@ public class LocationAsynchronousResolver implements ConnectionCallbacks, OnConn
     	if(!sessionSet.contains(sessionToInform)){
     		Log.d(Log_Tag,"new session added to the session list to inform");
     		sessionSet.add(sessionToInform);
+    	}else{
+    		//if the session is already contained : it means that GPS location hasn't been resolved
+    		//during session period then session is set as NOT_LOCALIZED
+    		sessionToInform.unresolvedLocation();
+    		//set already contains session triggering new checkAndTriggerLocation to check gps state
+    		checkAndTriggerLocation();
     	}
     	//if the session is the first on added, location is requested
     	if(sessionSet.size()==1){
@@ -208,7 +210,8 @@ public class LocationAsynchronousResolver implements ConnectionCallbacks, OnConn
         
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setFastestInterval(5 * 1000);
+        //TODO make it depend on rate array
+        locationRequest.setFastestInterval(7 * 1000);
          
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
 					         .addLocationRequest(locationRequest);
@@ -249,6 +252,7 @@ public class LocationAsynchronousResolver implements ConnectionCallbacks, OnConn
                     	Log.d(Log_Tag," result callback : location setting is NOT OK and UNAVAILABLE");
                         // Location settings are not satisfied. However, we have no way to fix the
                         // settings so we won't show the dialog.
+                    	onLocationForbidden();
                         break;
                 }
             }
@@ -274,7 +278,10 @@ public class LocationAsynchronousResolver implements ConnectionCallbacks, OnConn
     	askForLocation();	
     }
 
-
+    /**Called by the manager when a session is deleted*/
+    public void onSessionSuppressed(Session session){
+    	this.sessionSet.remove(session);
+    }
 
 	@Override
 	public void onConnected(Bundle arg0) {

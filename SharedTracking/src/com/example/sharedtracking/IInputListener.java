@@ -1,7 +1,5 @@
 package com.example.sharedtracking;
 
-import java.sql.Timestamp;
-
 /**interface for callback coming from dialog fragments*/
 public interface IInputListener {
 	

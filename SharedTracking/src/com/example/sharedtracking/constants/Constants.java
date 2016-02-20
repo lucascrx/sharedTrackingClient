@@ -5,7 +5,9 @@ public class Constants {
 	
 	/**Network Constant*/
 	
-	public final static String SERVER_ADDRESS = "http://192.168.1.17:8080/findMeServer/jaxrs";
+	
+	//public final static String SERVER_ADDRESS = "http://192.168.1.17:8080/findMeServer/jaxrs";
+	public final static String SERVER_ADDRESS = "https://sharedtracking-backendserver01.rhcloud.com:8443/findMeServer/jaxrs";
 	
 	public final static String CREATE_IMMEDIATE_SESSION_PATH = "/immediate_creation";
 	public final static String CREATE_PREPARED_SESSION_PATH="/prepared_creation";
@@ -33,6 +35,8 @@ public class Constants {
 	public final static String POST_PARAM_LABEL_STARTING_TIME = "starting_time";
 	public final static String POST_PARAM_LABEL_ENDING_TIME = "ending_time";
 	
+	/**timestamp formatting for client/server exchanges*/
+	public final static String TIMESTAMP_STRING_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS z";
 	
 	/**Constant for session status*/
 	
@@ -62,6 +66,25 @@ public class Constants {
 	
 	/**Constant for Location Setting dialog display*/
 	public final static int REQUEST_CHECK_LOCATION_SETTINGS = 1001;
+	
+	/**Notification ID for retrieving*/
+	public final static int NOTIFICATION_ID = 100;
+	
+	/**Extra field name for session public ID for AlarmReceiver destined Intent*/
+	public final static String SESSION_PUBLIC_ID_INTENT_EXTRA_LABEL = "session_public_id";
+	
+	/**Shared Preferences Constants*/
+	
+	/**Shared preference name*/
+	public final static String SHARED_PREFERENCE_NAME = "sharedTrackingPrefs";
+	/**Device ID field label*/
+	public final static String DEVICE_ID_STORING_LABEL = "device_id";
+	/**Random Space for Device ID generation*/
+	public final static String DEVICE_ID_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	/**Device ID length*/
+	public final static int DEVICE_ID_LENGTH = 5;
+	
+	
 	
 	
 }

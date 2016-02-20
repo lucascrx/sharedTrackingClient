@@ -13,7 +13,6 @@
 	    android:layout_gravity="center"
 	    android:text="@string/session_deletion_description"/>
 
-	    
 	  
     
 </LinearLayout>

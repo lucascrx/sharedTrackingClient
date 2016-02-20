@@ -1,14 +1,11 @@
 package com.example.sharedtracking.session;
 
 import java.sql.Timestamp;
-import java.util.Random;
 
+import android.app.PendingIntent;
 import android.location.Location;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 
-import com.example.sharedtracking.R;
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.network.EndingTimeUpdateOperationCallback;
 import com.example.sharedtracking.network.NameUpdateOperationCallback;
@@ -19,7 +16,6 @@ import com.example.sharedtracking.network.WebClient;
 import com.example.sharedtracking.response.ResponseException;
 import com.example.sharedtracking.response.SynchronizationResponse;
 import com.example.sharedtracking.response.UpdateResponse;
-import com.example.sharedtracking.types.SampleList;
 import com.example.sharedtracking.views.ConstantGUI;
 
 /**Either a session created by the user or one for which it is a contributor*/
@@ -37,31 +33,26 @@ public class HostedSession extends Session implements ISessionUpdateListener{
 	/**Number of uploaded Samples*/
 	private int uploadedSampleNumber;
 	
-	//TODO remove at the end
-	/**Mock location for testing [lat,long]*/
-	private double[] mockLoc = {0,0};
+	/**Pending intent destined to alarm receiver*/
+	private PendingIntent nextWakeUpIntent;
+	/**Callback for session alarm intent update*/
+	private ISessionCreationListener callbackForAlarmUpdate;
 	
 	
 	public HostedSession(String name, String publicID,int rate, Timestamp start, Timestamp end, 
-			Timestamp lastModifTime, String privateID, String devName, String devID) {
+			Timestamp lastModifTime, String privateID, String devName, String devID,ISessionCreationListener callback ) {
 		super(name, publicID,rate,start,end,lastModifTime);
 		this.privateID=privateID;
 		
-		//TODO reset at the end correct code start
-		//this.deviceName=devName;
-		//this.deviceID=devID;
-		//correct code end
+		this.deviceName=devName;
+		this.deviceID=devID;
 		
-		//TODO remove at the end test code start
-		Random rnd = new Random();
-		int n = 1000 + rnd.nextInt(9000);
-		this.deviceID= n+"12341234123:123412341234123";
-		this.deviceName=devName+n;
-		//test code end
 		
 		//hosted session is always initialized with Pending status
 		this.status=Constants.SESSION_STATUS_PENDING;
 		this.uploadedSampleNumber=0;
+		
+		this.callbackForAlarmUpdate = callback;
 	}
 
 	/**Triggers a sample submission to the server*/
@@ -73,7 +64,6 @@ public class HostedSession extends Session implements ISessionUpdateListener{
 	}
 
 	/**Callback method called in response to sample submitting to server*/
-	//TODO may maintain a counter of uploaded samples, that should modify hasSessionChanged too
 	@Override
 	public void onPositionUpdated(UpdateResponse response) {
 		boolean hasSessionChanged = false;
@@ -278,7 +268,7 @@ public class HostedSession extends Session implements ISessionUpdateListener{
 
 	/**Triggers a session starting time update on server, changes are taken in account
 	 * locally after server response*/
-	public void updateStartingTime(Timestamp start){
+	public void updateStartingTime(String start){
 		Log.d(Log_Tag,"session "+this.name+" starting time update triggered");
 		//request server using WebClient
 		StartingTimeUpdateOperationCallback callback = new StartingTimeUpdateOperationCallback(this);
@@ -333,7 +323,7 @@ public class HostedSession extends Session implements ISessionUpdateListener{
 	
 	/**Triggers a session ending time update on server, changes are taken in account
 	 * locally after server response*/
-	public void updateEndingTime(Timestamp end){
+	public void updateEndingTime(String end){
 		Log.d(Log_Tag,"session "+this.name+" ending time update triggered");
 		//request server using WebClient
 		EndingTimeUpdateOperationCallback callback = new EndingTimeUpdateOperationCallback(this);
@@ -392,78 +382,50 @@ public class HostedSession extends Session implements ISessionUpdateListener{
 	@Override
 	public void newLocationResolved(Location loc) {
 		//submit location to server
-
 		double latitude = loc.getLatitude();
 		double longitude = loc.getLongitude();
-		
-		if(this.mockLoc[0]==0){
-			this.mockLoc = new double[] {latitude,longitude};
-		}
-		
 
-		//Code Chunk for test:
-		double radius = 0.002;
-		sumitRandomizedLocation(radius);
-		
-		//TODO submitCurrentPosition(latitude,longitude);
-			
+		submitCurrentPosition(latitude,longitude);			
 		
 	}
 	
-	/**Function for testing purposes*/
-	//TODO remove at the end
-	public void sumitRandomizedLocation(double radius) {
-	    Random random = new Random();
-
-	    double u = random.nextDouble()*radius;
-	    double v = random.nextDouble()*radius;
-
-	    double newlat = u + this.mockLoc[0];
-	    double newlong = v + this.mockLoc[1];
-	    
-	    System.out.println("Longitude: " + newlong + "  Latitude: " + newlat );
-	    this.mockLoc = new double[] {newlat,newlong};
-	    submitCurrentPosition(newlat,newlong);
-	   
-	}
 	
 	public int getSubmittedSampleNumber(){
 		return this.uploadedSampleNumber;
 	}
 	
-	//Parcelable Part
-
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setAlarmIntent(PendingIntent intent) {
+		this.nextWakeUpIntent = intent;
 	}
 	
-    public static final Parcelable.Creator<HostedSession> CREATOR = new Parcelable.Creator<HostedSession>() {
-        public HostedSession createFromParcel(Parcel in) {
-            return new HostedSession(in);
-        }
-
-        public HostedSession[] newArray(int size) {
-            return new HostedSession[size];
-        }
-    };
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		super.writeToParcel(dest, flags);
-		dest.writeString(privateID);
-		dest.writeString(deviceName);
-		dest.writeString(deviceID);
-		dest.writeInt(uploadedSampleNumber);
+	public PendingIntent getAlarmIntent(){
+		return this.nextWakeUpIntent;
 	}
 	
-    private HostedSession(Parcel in) {
-        super(in);
-        privateID = in.readString();
-        deviceName = in.readString();
-        deviceID = in.readString();
-        uploadedSampleNumber = in.readInt();
+	
+	public boolean isNextUploadBeforeEnd(){
+		boolean result = true;
+		if(this.endingTime!=null){
+			//next upload time
+			java.util.Date date= new java.util.Date();
+			Timestamp nextUpload = new Timestamp(date.getTime());
+			nextUpload.setTime(nextUpload.getTime() + this.uploadRate);
+			//comparing
+			if(nextUpload.after(this.endingTime)){
+				result=false;
+			}	
+		}
+		return result;
+	}
+
+	/**After session refresh, alarms have to be updated too
+	 * callback is called*/
+	@Override
+    public void onSessionRefreshed(SynchronizationResponse response){
+    	super.onSessionRefreshed(response);
+    	//calling callback for alarm update even if it not always needed
+    	this.callbackForAlarmUpdate.onAlarmUpdateRequired(this);
     }
+	
 	
 }

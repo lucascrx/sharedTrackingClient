@@ -16,4 +16,7 @@ public interface IGraphicalListener {
 	
 	/**function called by an object when it failed to update one of its parameters*/
 	public void notifyFailedUpdateOperation(String ParameterName);
+	
+	/**function called by the manager when an hosted session is created on server*/
+	public void notifyHostedSessionCreation();
 }

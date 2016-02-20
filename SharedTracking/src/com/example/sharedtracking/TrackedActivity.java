@@ -2,37 +2,28 @@ package com.example.sharedtracking;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Locale;
-
-import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
+import java.util.TimeZone;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.inputs.DialogInputConverter;
 import com.example.sharedtracking.session.HostedSession;
-import com.example.sharedtracking.session.JoinedSession;
 import com.example.sharedtracking.session.Session;
-import com.example.sharedtracking.types.Sample;
 import com.example.sharedtracking.views.ConstantGUI;
-import com.google.android.gms.maps.GoogleMap;
+import com.st.sharedtracking.R;
 
 /**A tracked activity associated to one hosted session
  * acts as a passive activity*/
@@ -40,9 +31,6 @@ public class TrackedActivity extends BaseActivity {
 	
 	/**Associated joined session*/
 	private int indexSession;
-
-	/**map object*/
-	private GoogleMap map;
 	
     /**log Tag for debugging*/
 	@Override
@@ -70,7 +58,7 @@ public class TrackedActivity extends BaseActivity {
        this.indexSession = (Integer) getIntent().getSerializableExtra("sessionIndex");
     }	
 
-
+    //creating setting preferences menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.main, menu);
@@ -80,8 +68,13 @@ public class TrackedActivity extends BaseActivity {
 	@Override
 	/**Tracked activity implements onObjectModified method in re-reading session meta data and samples*/
 	public void updateGUI() {
+        //updating notifications
+        updateNotification();
 		// the Activity only focus on the session displayed
 		Log.d(this.getActivityClassName(),"updating GUI");
+
+        //updating notifications
+        updateNotification();
 		Session boundSession = this.manager.getSessionList().get(this.indexSession);
 		try{
 			if(boundSession==null){
@@ -125,7 +118,9 @@ public class TrackedActivity extends BaseActivity {
 			//Set times, dates and sampling info
 			Locale current = getResources().getConfiguration().locale;
 			SimpleDateFormat timeFormatter = new SimpleDateFormat(ConstantGUI.TIME_FORMATTING_STRING,current);
+			timeFormatter.setTimeZone(TimeZone.getDefault());
 			SimpleDateFormat dateFormatter = new SimpleDateFormat(ConstantGUI.DATE_FORMATTING_STRING,current);
+			dateFormatter.setTimeZone(TimeZone.getDefault());
 			
 			//START
 			TextView startTimeTV = (TextView) findViewById(R.id.tracked_session_starting_time);	
@@ -187,12 +182,20 @@ public class TrackedActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.action_settings:
-		    // Load the preferences from an XML resource
-		    // Display the fragment as the main content.
-		    getFragmentManager().beginTransaction()
-		            .replace(android.R.id.content, new TrackedActivitySettingFragment())
-		            .addToBackStack("settings")
-		            .commit();
+
+		    FragmentTransaction ft = getFragmentManager().beginTransaction();
+		    Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+		    if (prev != null) {
+		        ft.remove(prev);
+		    }
+		    ft.addToBackStack(null);
+		    
+		    // Create and show the dialog.
+		    DialogFragment newFragment = new TrackedActivitySettingFragment();
+		    newFragment.show(ft, "dialog");
+
+		    
+		    
 	        default:
 	            // If we got here, the user's action was not recognized.
 	            // Invoke the superclass to handle it.
@@ -220,14 +223,24 @@ public class TrackedActivity extends BaseActivity {
 			if(session.getStatus()==Constants.SESSION_STATUS_RUNNING){
 				//setting end date to now + handling latency
 				java.util.Date date= new java.util.Date();
-				int latency = 2 ;//2 seconds for latency
+				int latency = 4 ;//4 seconds for latency
 				Timestamp now = new Timestamp(date.getTime()+latency*1000);
-				session.updateEndingTime(now);
+				Locale current = getResources().getConfiguration().locale;
+            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
+            	String newEndingTimestampString = dateFormat.format(now);
+				session.updateEndingTime(newEndingTimestampString);
 			}
 			
 		}catch(GraphicalException e){
 			e.printStackTrace();
 		}
+	}
+
+	/**nothing to do here*/
+	@Override
+	public void notifyHostedSessionCreation() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

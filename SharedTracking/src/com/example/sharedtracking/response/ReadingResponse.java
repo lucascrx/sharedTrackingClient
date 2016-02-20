@@ -1,8 +1,6 @@
 package com.example.sharedtracking.response;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 
 import com.example.sharedtracking.types.SampleList;
 
@@ -10,6 +8,10 @@ import com.example.sharedtracking.types.SampleList;
 public class ReadingResponse extends Response implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**Flag indication if server operation went well or not*/
 	private boolean operationStatus;
 	/**Sample List retrieved from the database*/

@@ -4,4 +4,9 @@ package com.example.sharedtracking.session;
  * (same type and same public ID) in the session List*/
 public class SessionExistingException extends Exception{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 }

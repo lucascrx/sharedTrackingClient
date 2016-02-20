@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.location.Location;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.sharedtracking.constants.Constants;
@@ -215,47 +213,5 @@ public class JoinedSession extends Session implements ISessionReadingListener {
 	}
 	
 	
-	
-	//Parcelable Part
-
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-    public static final Parcelable.Creator<JoinedSession> CREATOR = new Parcelable.Creator<JoinedSession>() {
-        public JoinedSession createFromParcel(Parcel in) {
-            return new JoinedSession(in);
-        }
-
-        public JoinedSession[] newArray(int size) {
-            return new JoinedSession[size];
-        }
-    };
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		super.writeToParcel(dest, flags);
-		//writing sample list
-		dest.writeInt(this.fetchedSamples.size());
-		for(Map.Entry<String,ArrayList<Sample>> entry : this.fetchedSamples.entrySet()){
-		    dest.writeString(entry.getKey());
-		    dest.writeTypedList(entry.getValue());
-		}
-	}
-	
-    private JoinedSession(Parcel in) {
-        super(in);
-        //reading Samples
-        fetchedSamples = new HashMap<String, ArrayList<Sample>>();
-        int size = in.readInt();
-        for(int i = 0; i < size; i++){
-          String key = in.readString();
-          ArrayList<Sample> list = new ArrayList<Sample>();
-          in.readTypedList(list, Sample.CREATOR);
-          fetchedSamples.put(key,list);
-        }
-    }
 	
 }

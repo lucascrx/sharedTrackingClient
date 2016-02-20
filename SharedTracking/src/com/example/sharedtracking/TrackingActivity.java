@@ -4,13 +4,11 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+import java.util.TimeZone;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.inputs.DialogInputConverter;
-import com.example.sharedtracking.session.HostedSession;
 import com.example.sharedtracking.session.JoinedSession;
 import com.example.sharedtracking.session.Session;
 import com.example.sharedtracking.types.Sample;
@@ -20,14 +18,13 @@ import com.example.sharedtracking.views.PositionedMarker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.app.Activity;
+import com.st.sharedtracking.R;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,17 +33,14 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 /**A tracking activity is associated to one Joined Session
  * acts as an passive activity*/
-public class TrackingActivity extends BaseActivity {
+public class TrackingActivity extends BaseActivity implements OnMapReadyCallback {
 	
 	/**Associated joined session*/
 	private int indexSession;
@@ -97,6 +91,9 @@ public class TrackingActivity extends BaseActivity {
 	public void updateGUI() {
 		// the Activity only focus on the session displayed
 		Log.d(getActivityClassName(),"updating GUI");
+
+        //updating notifications
+        updateNotification();
 		Session boundSession = manager.getSessionList().get(indexSession);
 		try{
 			if(boundSession==null){
@@ -139,7 +136,9 @@ public class TrackingActivity extends BaseActivity {
 			//Set times, dates and sampling info
 			Locale current = getResources().getConfiguration().locale;
 			SimpleDateFormat timeFormatter = new SimpleDateFormat(ConstantGUI.TIME_FORMATTING_STRING,current);
+			timeFormatter.setTimeZone(TimeZone.getDefault());
 			SimpleDateFormat dateFormatter = new SimpleDateFormat(ConstantGUI.DATE_FORMATTING_STRING,current);
+			dateFormatter.setTimeZone(TimeZone.getDefault());
 			
 			//START
 			TextView startTimeTV = (TextView) findViewById(R.id.tracking_session_starting_time);	
@@ -196,16 +195,23 @@ public class TrackingActivity extends BaseActivity {
 		
 	}
 	
-    /** function to load map. If map is not created it will create it for you
+    /** function to request map by asynchronous loading. 
      * */
     private void initilizeMap() {
         if (map == null) {
-            map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-            // check if map is created successfully or not
-            if (map == null) {
-            	Log.d(getActivityClassName(),"unable to create Map");
-            }
+           ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
         }
+    }
+    
+    /**Callback when map is loaded : */
+    @Override
+    public void onMapReady(final GoogleMap map) {
+        // check if map is created successfully or not
+        if (map == null) {
+        	Log.d(getActivityClassName(),"unable to create Map");
+        }
+        this.map = map;
+        updateGUI();
     }
     
     /**Print the markers on the Map*/
@@ -241,7 +247,6 @@ public class TrackingActivity extends BaseActivity {
 					Timestamp time = sample.getTime();
 					//Log.d(this.getActivityClassName(),"New Sample located at lat: "+latitude+" long : "+longitude);
 					String deviceName = sample.getDeviceName();
-					String deviceID = sample.getDeviceID();
 					String timeString = sdf.format(time);
 					// create marker
 					MarkerOptions marker = new MarkerOptions()
@@ -359,7 +364,12 @@ public class TrackingActivity extends BaseActivity {
 	}
 
 
-	
+	/**nothing to do here*/
+	@Override
+	public void notifyHostedSessionCreation() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 

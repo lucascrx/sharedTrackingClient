@@ -7,6 +7,11 @@ import java.sql.Timestamp;
 
 public class CreationResponse extends Response implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**Flag indication if server operation went well or not*/
 	private boolean operationStatus;
 	
