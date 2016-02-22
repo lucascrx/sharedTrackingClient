@@ -9,18 +9,18 @@
  	
  	<!-- main menu -->   
 	 <string name="menu_activity_title">Shared Tracking</string>    
-     <string name="new_tracked_session_button_string">Host Tracking Session</string>
-     <string name="new_tracking_session_button_string">Join Tracking Session</string>
+     <string name="new_tracked_session_button_string">Organizer</string>
+     <string name="new_tracking_session_button_string">Follower</string>
      <string name="empty_list">No Existing Session</string>
      
      <!-- creation dialog strings -->
      
-     <string name="tracked_session_creation_title_dialogue">Hosted Session Creation</string>
+     <string name="tracked_session_creation_title_dialogue">Tracking Session Creation</string>
      <string name="tracked_session_creation_prepared_tab_title">Advanced</string>
      <string name="tracked_session_creation_immediate_tab_title">Immediate</string>
      <string name="tracked_session_contribution_tab_title">Contribute</string>
      
-     <string name="tracking_session_creation_title_dialogue">Joining Session</string>
+     <string name="tracking_session_creation_title_dialogue">Joining Tracking Session</string>
      
      <string name="session_name_title">Name</string>
      <string name="session_rate_title">Upload Period</string>
