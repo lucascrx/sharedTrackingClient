@@ -125,7 +125,8 @@
 	        	android:id="@+id/prepared_creation_name_setting_editText"
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
-	        	android:layout_weight="3"/>
+	        	android:layout_weight="3">
+	           	</EditText>
 	                  
 	            
 	    </LinearLayout>
@@ -152,27 +153,6 @@
 	            
 	    </LinearLayout>
 	    
-	    <LinearLayout
-	    android:id="@+id/prepared_creation_publicID_setting_layout"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal">
-	    
-	            <TextView
-	        	android:id="@+id/prepared_creation_publicID_setting_title"
-	        	android:layout_width="0dp"
-	        	android:layout_height="wrap_content"
-	        	android:text="@string/session_public_ID_title"
-	        	android:layout_weight="1"/>
-	                
-	           	<EditText
-	        	android:id="@+id/prepared_creation_publicID_setting_editText"
-	        	android:layout_width="0dp"
-	        	android:layout_height="wrap_content"
-	        	android:layout_weight="3"/>
-	                  
-	            
-	    </LinearLayout>
 	    
 	    <LinearLayout
 	    android:id="@+id/prepared_creation_password_setting_layout"
@@ -186,6 +166,7 @@
 	        	android:layout_width="0dp"
 	        	android:layout_height="wrap_content"
 	        	android:text="@string/session_password_title"
+	        	android:layout_gravity="bottom"
 	        	android:layout_weight="1"/>
 	                
 	           	<EditText
@@ -202,7 +183,9 @@
 	    android:id="@+id/prepared_creation_startingDate_setting_title"
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
-	  	android:text="@string/session_starting_time_title"/>
+	  	android:textAppearance="?android:attr/textAppearanceMedium"
+	  	android:text="@string/session_starting_time_title"
+	  	android:layout_gravity="center"/>
 	    
 	    <LinearLayout
 	    android:id="@+id/prepared_creation_startingDate_setting_layout"
@@ -234,14 +217,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/session_ending_time_title" 
-        android:checked="true"/>
+        android:checked="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center"/>
 
 
 	    <LinearLayout
 	    android:id="@+id/prepared_creation_endingDate_setting_layout"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal">
+	    android:orientation="horizontal"
+	    android:visibility="gone">
 	    
 
 	                

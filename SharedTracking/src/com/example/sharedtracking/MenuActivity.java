@@ -149,11 +149,11 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 		
 	}
 	@Override
-	public void onPreparedSessionCreationReady(String name, int rate, String publicID, String password,
+	public void onPreparedSessionCreationReady(String name, int rate, String password,
 			String startDate, String endDate) {
 		Log.d(this.getActivityClassName()," called by dialog for Prepared Hosted Session Creation");
 		showProgressBar();
-		this.manager.createNewPreparedSession(name, publicID, password, startDate, endDate, rate);
+		this.manager.createNewPreparedSession(name, password, startDate, endDate, rate);
 		
 	}
 	@Override

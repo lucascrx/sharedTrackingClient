@@ -84,10 +84,6 @@ public class TrackedSessionCreationDialog extends DialogFragment {
 		            	String temp = inputRate.getSelectedItem().toString();
 		            	int typedRate = DialogInputConverter.convertRateToInt(temp);
 		            	DialogInputSanitizer.sanitizeInputAsRate(typedRate);
-	            		//retrieving public ID
-		            	EditText inputPublicID = (EditText) view.findViewById(R.id.prepared_creation_publicID_setting_editText);
-		            	String typedToken = inputPublicID.getText().toString();
-		            	DialogInputSanitizer.sanitizeInputAsPublicID(typedToken);
 		            	//retrieving password
 		            	EditText inputPassword = (EditText) view.findViewById(R.id.prepared_creation_password_setting_editText);
 		            	String typedPassword = inputPassword.getText().toString();
@@ -130,7 +126,7 @@ public class TrackedSessionCreationDialog extends DialogFragment {
 		            	}
 		            	//calling callback
 		                IInputListener callingActivity = (IInputListener) getActivity();
-		                callingActivity.onPreparedSessionCreationReady(typedName, typedRate, typedToken, typedPassword, typedStartDate, typedEndDate);
+		                callingActivity.onPreparedSessionCreationReady(typedName, typedRate, typedPassword, typedStartDate, typedEndDate);
 	            	}else if(activeIndex==2){
 	            		//retrieving public ID
 		            	EditText inputPublicID = (EditText) view.findViewById(R.id.contribution_publicID_editText);
@@ -236,6 +232,7 @@ public class TrackedSessionCreationDialog extends DialogFragment {
         // Apply the adapter to the spinner
         spinnerImmediateCreation.setAdapter(adapter);
         spinnerPreparedCreation.setAdapter(adapter);
+        
         
         mTabHost.addTab(immediateCreationTab);
         mTabHost.addTab(preparedCreationTab);  

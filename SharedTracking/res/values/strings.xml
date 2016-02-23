@@ -9,8 +9,8 @@
  	
  	<!-- main menu -->   
 	 <string name="menu_activity_title">Shared Tracking</string>    
-     <string name="new_tracked_session_button_string">Organizer</string>
-     <string name="new_tracking_session_button_string">Follower</string>
+     <string name="new_tracked_session_button_string">Organize</string>
+     <string name="new_tracking_session_button_string">Follow</string>
      <string name="empty_list">No Existing Session</string>
      
      <!-- creation dialog strings -->
@@ -29,18 +29,19 @@
      <string name="session_public_ID_title">Token</string>
      <string name="session_password_title">Password</string>
      
-     <string name="immediate_hosted_session_description">Share your position in a simple way:
+     <string name="immediate_hosted_session_description">Simple way to share your position: 
          Choose a name and a sampling period, you will then receive a token that enables you
          to share your location.
          </string>
 
-     <string name="prepared_hosted_session_description">Advanced way to share your position that let
-         you define the token to share, the tracking validity period as well as a password. 
+     <string name="prepared_hosted_session_description">Advanced way to share your position: 
+         Choose a name, a sampling period, a password and a tracking validity period. You will 
+         then receive a token that enables you to share your location.
          Other devices can be tracked within this session, as contributors.
          </string>
      
      <string name="contribution_session_description">Share your position as part of an existing tracking
-         session. You need submit the token and the password set for the session you want to contribute to.
+         session. Submit the token and the password associated to the session you want to contribute to.
          </string>
          
      <string name="joined_session_description">
@@ -79,10 +80,10 @@
      <string name="session_activity_to_date">To</string>
      <string name="session_activity_sample_number">Samples</string>
      
-     <string name="public_ID_instructions">Copy and send the token below to the persons you want to share 
-         your location with</string>
+     <string name="public_ID_instructions">Enable people to track you in sharing the token below with them</string>
      <string name="button_copy_token_label">Copy</string>
      <string name="button_stop_tracking">Stop Tracking</string>
+     <string name="button_share">Share Token</string>
      
      
   	<!-- session activity setting strings -->
@@ -121,6 +122,7 @@
 	<color name="black">#000000</color>
 	<color name="blue">#3f51b5</color>
 	<color name="lightBlue">#DEF4FA</color>
+	<color name="lightBlue2">#5C6AC3</color>
 	<color name="gray">#EDEDED</color>
 	<color name="darkGray">#808080</color>
     <color name="red">#FF0000</color>

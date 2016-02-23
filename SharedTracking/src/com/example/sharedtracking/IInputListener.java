@@ -5,7 +5,7 @@ public interface IInputListener {
 	
 	public void onImmediateSessionCreationReady(String name,int rate);
 	
-	public void onPreparedSessionCreationReady(String name, int rate, String publicID, String password,
+	public void onPreparedSessionCreationReady(String name, int rate, String password,
 			String startDate, String endDate);
 	
 	public void onSessionContributionReady(String publicID, String password);

@@ -62,7 +62,7 @@ public class SessionDeletionDialog extends DialogFragment {
 	    	}else{
 	    		toAppend=ConstantGUI.DEFAULT_VALUE_SESSION_NAME;
 	    	}
-	    	descriptionTV.append(toAppend);
+	    	descriptionTV.append(toAppend+" ?");
 	        return mView;
 	    }
 

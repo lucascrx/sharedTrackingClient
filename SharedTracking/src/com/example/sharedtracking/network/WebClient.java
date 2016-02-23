@@ -27,13 +27,12 @@ public class WebClient {
 	}
 	
 	/**Session Creation Prepared Mode*/
-	public static void createSession(String name,String publicID,String password,Integer rate,String startingTime,
+	public static void createSession(String name,String password,Integer rate,String startingTime,
 									String endingTime, CreationOperationCallback callback){
 		Log.d(Log_Tag,"preparing request for prepared session creation");
 		//creating the POST request to send
 		HashMap<String,String> parameters = new HashMap<String,String>();
 		parameters.put(Constants.POST_PARAM_LABEL_SESSION_NAME, name);
-		parameters.put(Constants.POST_PARAM_LABEL_PUBLIC_ID, publicID);
 		parameters.put(Constants.POST_PARAM_LABEL_PASSWORD, password);
 		parameters.put(Constants.POST_PARAM_LABEL_STARTING_TIME, startingTime);
 		if(endingTime!=null){

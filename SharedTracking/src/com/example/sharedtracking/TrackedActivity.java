@@ -208,6 +208,28 @@ public class TrackedActivity extends BaseActivity {
 		return this.indexSession;
 	}
 
+	/**share token : starting intent*/
+	public void shareToken(View v){
+		Session boundSession = this.manager.getSessionList().get(this.indexSession);
+		try{
+			if(boundSession==null){
+				//if session is null, update is aborted
+				Log.d(this.getActivityClassName(),"impossible to update GUI : session object is null");
+				throw new GraphicalException("Tracked Activity is updating a null session");
+			}
+			TextView tokenTextView = (TextView) findViewById(R.id.tracked_session_public_token);	
+			String token = tokenTextView.getText().toString();
+			//preparing intent
+			Intent sendIntent = new Intent();
+			sendIntent.setAction(Intent.ACTION_SEND);
+			sendIntent.putExtra(Intent.EXTRA_TEXT,token);
+			sendIntent.setType("text/plain");
+			startActivity(sendIntent);		
+		}catch(GraphicalException e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**stops a running session : set ending time to now*/
 	public void stopTracking(View v){
 		Session boundSession = this.manager.getSessionList().get(this.indexSession);

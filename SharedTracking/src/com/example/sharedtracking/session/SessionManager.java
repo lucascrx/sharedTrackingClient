@@ -152,10 +152,10 @@ public class SessionManager implements ISessionCreationListener, Serializable {
 	}
 	
 	/**Create a new (hosted) prepared session tracking user's position*/
-	public void createNewPreparedSession(String name, String publicID, String password, 
+	public void createNewPreparedSession(String name, String password, 
 					String start, String end, int rate){
 		CreationOperationCallback callback = new CreationOperationCallback(this);
-		WebClient.createSession(name, publicID, password, rate, start, end, callback);
+		WebClient.createSession(name, password, rate, start, end, callback);
 	}
 	
 	/**Create a new hosted session through contribution request*/

@@ -38,21 +38,35 @@
     		
 			<View
 			  android:layout_width="match_parent"
-			  android:layout_height="50dp"/>
+			  android:layout_height="20dp"/>
     			
 	    	<TextView
 	      	android:id="@+id/tracked_session_public_token"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:textStyle="bold"
-	        android:textColor="@color/blue"
+	        android:textColor="@color/white"
 	        android:background="@drawable/simple_white_background"
 	        android:padding="5dp"
 	        android:gravity="center"
 	        android:textIsSelectable="true"/>
-	       
+	    	
+	    	<Button 
+    		android:id="@+id/tracked_session_share"
+  			android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="@string/button_share"
+	    	android:onClick="shareToken"
+	   		android:textColor="@color/blue"
+			android:background="@drawable/button_share_background"
+			android:padding="15dp"
+			android:layout_marginTop="10dp"
+    		android:layout_marginBottom="5dp"
+	    	android:layout_gravity="center"/>
 
     	</LinearLayout>
+    	
+
     	
     	<!-- Layout for starting, ending times and sampling info -->
     	
