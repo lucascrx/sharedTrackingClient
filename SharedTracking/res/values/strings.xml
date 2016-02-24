@@ -15,12 +15,12 @@
      
      <!-- creation dialog strings -->
      
-     <string name="tracked_session_creation_title_dialogue">Tracking Session Creation</string>
+     <string name="tracked_session_creation_title_dialogue">Organize</string>
      <string name="tracked_session_creation_prepared_tab_title">Advanced</string>
      <string name="tracked_session_creation_immediate_tab_title">Immediate</string>
      <string name="tracked_session_contribution_tab_title">Contribute</string>
      
-     <string name="tracking_session_creation_title_dialogue">Joining Tracking Session</string>
+     <string name="tracking_session_creation_title_dialogue">Follow</string>
      
      <string name="session_name_title">Name</string>
      <string name="session_rate_title">Upload Period</string>
