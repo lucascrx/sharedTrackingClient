@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.inputs.DialogInputConverter;
 import com.example.sharedtracking.session.JoinedSession;
@@ -15,6 +16,7 @@ import com.example.sharedtracking.types.Sample;
 import com.example.sharedtracking.views.ConstantGUI;
 import com.example.sharedtracking.views.MarkerColorManager;
 import com.example.sharedtracking.views.PositionedMarker;
+import com.example.sharedtracking.views.ConstantGUI.DateOverlappingRunnable;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -25,6 +27,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.st.sharedtracking.R;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -35,6 +38,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -143,6 +147,8 @@ public class TrackingActivity extends BaseActivity implements OnMapReadyCallback
 			//START
 			TextView startTimeTV = (TextView) findViewById(R.id.tracking_session_starting_time);	
 			TextView startDateTV = (TextView) findViewById(R.id.tracking_session_starting_date);	
+			//View turned invisible during updates makes changes smoothers  
+			startDateTV.setVisibility(View.INVISIBLE);
 			Timestamp start = session.getStartingTime();
 			String startTimeString;
 			String startDateString;
@@ -155,10 +161,13 @@ public class TrackingActivity extends BaseActivity implements OnMapReadyCallback
 			}
 			startTimeTV.setText(startTimeString);
 			startDateTV.setText(startDateString);
+			startDateTV.post( new DateOverlappingRunnable(startDateTV,start,current));
 			
 			//END
 			TextView endTimeTV = (TextView) findViewById(R.id.tracking_session_ending_time);
 			TextView endDateTV = (TextView) findViewById(R.id.tracking_session_ending_date);
+			//View turned invisible during updates makes changes smoothers  
+			endDateTV.setVisibility(View.INVISIBLE);
 			Timestamp end = session.getEndingTime();
 			String endTimeString;
 			String endDateString;
@@ -171,6 +180,7 @@ public class TrackingActivity extends BaseActivity implements OnMapReadyCallback
 			}
 			endTimeTV.setText(endTimeString);
 			endDateTV.setText(endDateString);
+			endTimeTV.post( new DateOverlappingRunnable(endTimeTV,end,current));
 			
 			//Sampling Info
 			TextView receivedSampleTV = (TextView) findViewById(R.id.tracking_session_received_sample);

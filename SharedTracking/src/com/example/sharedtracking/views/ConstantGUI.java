@@ -1,7 +1,14 @@
 package com.example.sharedtracking.views;
 
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import android.graphics.Color;
+import android.view.View;
+import android.widget.TextView;
 
 public class ConstantGUI {
 	
@@ -47,10 +54,44 @@ public class ConstantGUI {
 	
 	public static final String TIME_DATE_FORMATTING_STRING = "HH:mm dd/MM/yyyy";
 	public static final String DATE_FORMATTING_STRING = "dd/MM/yyyy";
+	public static final String DATE_FORMATTING_STRING_SMALL = "dd/MM";
 	public static final String TIME_FORMATTING_STRING = "HH:mm";
 	public static final String SAMPLING_INFO_PREFIX = "Period : ";
 	
 
 	public static final int MIN_DISTANCE_IN_METERS_FOR_SAMPLE_DISPLAY = 30;
 	public static final int LIGHT_GREY_COLOR = Color.rgb(237,237,237);
+	
+	/**Handlers to fix view overlapping after display (for low resolution screens)*/
+	
+	
+	
+	
+	/**Handler for session dates, in case of overlapping, the year is not printed*/
+	public static class DateOverlappingRunnable implements Runnable{
+		private TextView view;
+		private Timestamp date;
+		private Locale current;
+		
+		public DateOverlappingRunnable(TextView viewToUpdate,Timestamp dateToDisplay, Locale cur){
+			this.view = viewToUpdate;
+			this.date = dateToDisplay;
+			this.current = cur;
+		}
+
+		@Override
+		public void run() {
+	        int lineCnt = view.getLineCount();
+	        if(lineCnt>1){
+	        	//formatting date under a new format
+				SimpleDateFormat dateFormatter = new SimpleDateFormat(ConstantGUI.DATE_FORMATTING_STRING_SMALL,current);
+				dateFormatter.setTimeZone(TimeZone.getDefault());
+				String newDate = dateFormatter.format(date);
+				view.setText(newDate);
+	        }
+	        this.view.setVisibility(View.VISIBLE);
+		}
+		
+		
+	}
 }

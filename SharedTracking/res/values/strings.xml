@@ -70,8 +70,8 @@
     
     <!-- session Items in List View -->
     
-     <string name="item_starting_time_title">Tracking Start Time :</string>
-     <string name="item_ending_time_title">Tracking End Time :</string>
+    <string name="item_starting_time_title">Start :</string> 
+    <string name="item_ending_time_title">End :</string> 
     
     
    <!-- session activity strings --> 
