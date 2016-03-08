@@ -3,7 +3,7 @@
 
     <string name="app_name">SharedTracking</string>
     <string name="action_settings">Settings</string>
-    
+    <string name="action_share">Share</string>
     
  <!-- menu activity strings -->
  	
@@ -15,27 +15,31 @@
      
      <!-- creation dialog strings -->
      
-     <string name="tracked_session_creation_title_dialogue">Organize</string>
+     <string name="tracked_session_creation_title_dialogue">Organize New Session</string>
      <string name="tracked_session_creation_prepared_tab_title">Advanced</string>
      <string name="tracked_session_creation_immediate_tab_title">Immediate</string>
      <string name="tracked_session_contribution_tab_title">Contribute</string>
      
-     <string name="tracking_session_creation_title_dialogue">Follow</string>
+     <string name="tracking_session_creation_title_dialogue">Follow Existing Session</string>
+ 
      
      <string name="session_name_title">Name</string>
      <string name="session_rate_title">Upload Period</string>
-     <string name="session_starting_time_title">Starting Date-Time</string>
-     <string name="session_ending_time_title">Ending Date-Time</string>
+     <string name="session_starting_time_title">Starting Time</string>
+      <string name="session_starting_date_title">Starting Date</string>
+     <string name="session_ending_time_title">Ending Time</string>
+     <string name="session_ending_date_title">Ending Date</string>
      <string name="session_public_ID_title">Token</string>
      <string name="session_password_title">Password</string>
      
+     
      <string name="immediate_hosted_session_description">Simple way to share your position: 
-         Choose a name and a sampling period, you will then receive a token that enables you
+         Choose a name and a location upload period, you will then receive a token that enables you
          to share your location.
          </string>
 
      <string name="prepared_hosted_session_description">Advanced way to share your position: 
-         Choose a name, a sampling period, a password and a tracking validity period. You will 
+         Choose a name, a location upload period, a password and a tracking time span. You will 
          then receive a token that enables you to share your location.
          Other devices can be tracked within this session, as contributors.
          </string>
@@ -70,8 +74,8 @@
     
     <!-- session Items in List View -->
     
-    <string name="item_starting_time_title">Start :</string> 
-    <string name="item_ending_time_title">End :</string> 
+    <string name="item_start_title">Start :</string> 
+    <string name="item_end_title">End :</string> 
     
     
    <!-- session activity strings --> 
@@ -101,13 +105,13 @@
 	<string name="pref_session_starting_date_title">New Starting Date</string>
 	<string name="pref_session_starting_time_title">New Starting Time</string>
 	
-	<string name="pref_session_starting_message">Starting date-time can be rescheduled before
-	    session starts, but it can only be postponed</string>
+	<string name="pref_session_starting_message">Tracking start can be rescheduled before
+	    session starts running, but it can only be postponed</string>
 	
 	<string name="pref_session_ending_date_title">New Ending Date</string>
 	<string name="pref_session_ending_time_title">New Ending Time</string>
 	
-	<string name="pref_session_ending_message">Ending date-time can be rescheduled before session ends</string>
+	<string name="pref_session_ending_message">Tracking end can be rescheduled before session completes</string>
 	
 	<!-- Notification Strings -->
 	<string name="notification_title_plural">Some sessions are currently running</string>
@@ -124,9 +128,14 @@
 	<color name="lightBlue">#DEF4FA</color>
 	<color name="lightBlue2">#5C6AC3</color>
 	<color name="gray">#EDEDED</color>
+	<color name="mediumGray">#CCCCCC</color>
 	<color name="darkGray">#808080</color>
     <color name="red">#FF0000</color>
     <color name="green">#32CD32</color>
     <color name="yellow">#FFD700</color>
     <color name="white">#FFFFFF</color>
+    
+   <!-- Description for pictures -->
+   <string name="picDesc">"Shared Tracking Image"</string>
+   
 </resources>

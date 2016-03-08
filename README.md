@@ -1,9 +1,8 @@
-# sharedTrackingClient
+# sharedTrackingClient (DevBranch)
 
 Client application for Android Platform.
 
-Current version : 1.3
+Current version : 1.6
 
-Published on [Google Store](https://play.google.com/store/apps/details?id=com.st.sharedtracking)
-
-Branches : Master + devBranch for tiny modifications before application update release
+devBranch gets updated with the last code changes before
+be merged with the Master.

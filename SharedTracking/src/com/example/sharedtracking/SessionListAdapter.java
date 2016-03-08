@@ -40,7 +40,9 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
         // Lookup view for data population
         TextView tvName = (TextView) convertView.findViewById(R.id.session_name);
         TextView tvStartingTime = (TextView) convertView.findViewById(R.id.starting_time);
+        TextView tvStartingDate = (TextView) convertView.findViewById(R.id.starting_date);
         TextView tvEndingTime = (TextView) convertView.findViewById(R.id.ending_time);
+        TextView tvEndingDate = (TextView) convertView.findViewById(R.id.ending_date);
         TextView tvPublicToken = (TextView) convertView.findViewById(R.id.public_token);        
         ImageView ivSessionType = (ImageView)convertView.findViewById(R.id.session_type);
         ImageView ivSessionStatus = (ImageView)convertView.findViewById(R.id.session_status);
@@ -55,28 +57,39 @@ public class SessionListAdapter extends ArrayAdapter<Session>{
 		tvName.setText(name);
 
 		Locale current = getContext().getResources().getConfiguration().locale;
-		SimpleDateFormat sdf = new SimpleDateFormat(ConstantGUI.TIME_DATE_FORMATTING_STRING,current);
-		sdf.setTimeZone(TimeZone.getDefault());
+		SimpleDateFormat timeFormat = new SimpleDateFormat(ConstantGUI.TIME_FORMATTING_STRING,current);
+		timeFormat.setTimeZone(TimeZone.getDefault());
+		SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantGUI.DATE_FORMATTING_STRING,current);
+		dateFormat.setTimeZone(TimeZone.getDefault());
 		
 		//Setting Starting time
 		Timestamp timestampStart = session.getStartingTime();
-		String start;
+		String startTime;
+		String startDate;
 		if(timestampStart==null){
 			//starting time is null when session is not configured
-			start = ConstantGUI.DEFAULT_VALUE_START_DATE;
+			startTime = ConstantGUI.DEFAULT_VALUE_START_TIME;
+			startDate = ConstantGUI.DEFAULT_VALUE_START_DATE;
 		}else{
-			start = sdf.format(timestampStart);
+			startTime = timeFormat.format(timestampStart);
+			startDate = dateFormat.format(timestampStart);
 		}
-		tvStartingTime.setText(start);
+		tvStartingTime.setText(startTime);
+		tvStartingDate.setText(startDate);
+		
 		//Setting Ending time
 		Timestamp timestampEnd = session.getEndingTime();
-		String end;
+		String endTime;
+		String endDate;
 		if(timestampEnd==null){
-			end = ConstantGUI.DEFAULT_VALUE_END_DATE;
+			endTime = ConstantGUI.DEFAULT_VALUE_END_TIME;
+			endDate = ConstantGUI.DEFAULT_VALUE_END_DATE;
 		}else{
-			end = sdf.format(timestampEnd);
+			endTime = timeFormat.format(timestampEnd);
+			endDate = dateFormat.format(timestampEnd);
 		}
-		tvEndingTime.setText(end);
+		tvEndingTime.setText(endTime);
+		tvEndingDate.setText(endDate);
         //Setting public ID
 		String publicID = session.getPublicID();
 		tvPublicToken.setText(publicID);

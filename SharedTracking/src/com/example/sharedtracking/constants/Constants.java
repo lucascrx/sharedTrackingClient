@@ -73,6 +73,35 @@ public class Constants {
 	/**Extra field name for session public ID for AlarmReceiver destined Intent*/
 	public final static String SESSION_PUBLIC_ID_INTENT_EXTRA_LABEL = "session_public_id";
 	
+	
+	/**Session Creation Intent Constant RESULT STATUS*/
+	
+	/**request code from Menu Activity*/
+	public final static int CREATION_REQUEST_CODE = 1000;
+	
+	/**when immediate creation returns*/
+	public final static int IMMEDIATE_SESSION_CREATION_RESULT = 1;
+	/**when prepared creation returns*/
+	public final static int PREPARED_SESSION_CREATION_RESULT = 2;
+	/**when contribution returns*/
+	public final static int CONTRIBUTION_RESULT = 3;
+	
+	/**Session Creation Intent Constant LABELS*/
+	
+	/**name*/
+	public final static String INTENT_LABEL_NAME = "name";
+	/**rate*/
+	public final static String INTENT_LABEL_RATE = "rate";
+	/**password*/
+	public final static String INTENT_LABEL_PASSWORD = "password";
+	/**starting time*/
+	public final static String INTENT_LABEL_STARTING_TIME = "starting_time";
+	/**ending time*/
+	public final static String INTENT_LABEL_ENDING_TIME = "ending_time";
+	/**public ID*/
+	public final static String INTENT_LABEL_PUBLIC_ID = "public_id";
+	
+	
 	/**Shared Preferences Constants*/
 	
 	/**Shared preference name*/

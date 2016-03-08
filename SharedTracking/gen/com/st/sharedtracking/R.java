@@ -456,42 +456,43 @@ containing a value of this type.
         public static final int black=0x7f070024;
         public static final int blue=0x7f070025;
         public static final int common_action_bar_splitter=0x7f070008;
-        public static final int common_google_signin_btn_text_dark=0x7f07002e;
+        public static final int common_google_signin_btn_text_dark=0x7f07002f;
         /**  Google Sign-in Button Colors 
          */
         public static final int common_google_signin_btn_text_dark_default=0x7f070009;
         public static final int common_google_signin_btn_text_dark_disabled=0x7f07000b;
         public static final int common_google_signin_btn_text_dark_focused=0x7f07000c;
         public static final int common_google_signin_btn_text_dark_pressed=0x7f07000a;
-        public static final int common_google_signin_btn_text_light=0x7f07002f;
+        public static final int common_google_signin_btn_text_light=0x7f070030;
         public static final int common_google_signin_btn_text_light_default=0x7f07000d;
         public static final int common_google_signin_btn_text_light_disabled=0x7f07000f;
         public static final int common_google_signin_btn_text_light_focused=0x7f070010;
         public static final int common_google_signin_btn_text_light_pressed=0x7f07000e;
-        public static final int common_plus_signin_btn_text_dark=0x7f070030;
+        public static final int common_plus_signin_btn_text_dark=0x7f070031;
         /**  Google Plus Sign-in Button Colors 
          */
         public static final int common_plus_signin_btn_text_dark_default=0x7f070000;
         public static final int common_plus_signin_btn_text_dark_disabled=0x7f070002;
         public static final int common_plus_signin_btn_text_dark_focused=0x7f070003;
         public static final int common_plus_signin_btn_text_dark_pressed=0x7f070001;
-        public static final int common_plus_signin_btn_text_light=0x7f070031;
+        public static final int common_plus_signin_btn_text_light=0x7f070032;
         public static final int common_plus_signin_btn_text_light_default=0x7f070004;
         public static final int common_plus_signin_btn_text_light_disabled=0x7f070006;
         public static final int common_plus_signin_btn_text_light_focused=0x7f070007;
         public static final int common_plus_signin_btn_text_light_pressed=0x7f070005;
-        public static final int darkGray=0x7f070029;
+        public static final int darkGray=0x7f07002a;
         public static final int gray=0x7f070028;
-        public static final int green=0x7f07002b;
+        public static final int green=0x7f07002c;
         public static final int lightBlue=0x7f070026;
         public static final int lightBlue2=0x7f070027;
+        public static final int mediumGray=0x7f070029;
         public static final int place_autocomplete_prediction_primary_text=0x7f070013;
         public static final int place_autocomplete_prediction_primary_text_highlight=0x7f070014;
         public static final int place_autocomplete_prediction_secondary_text=0x7f070015;
         public static final int place_autocomplete_search_hint=0x7f070012;
         public static final int place_autocomplete_search_text=0x7f070011;
         public static final int place_autocomplete_separator=0x7f070016;
-        public static final int red=0x7f07002a;
+        public static final int red=0x7f07002b;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f07001c;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -510,10 +511,10 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f07001e;
         public static final int wallet_holo_blue_light=0x7f070022;
         public static final int wallet_link_text_light=0x7f070023;
-        public static final int wallet_primary_text_holo_light=0x7f070032;
-        public static final int wallet_secondary_text_holo_dark=0x7f070033;
-        public static final int white=0x7f07002d;
-        public static final int yellow=0x7f07002c;
+        public static final int wallet_primary_text_holo_light=0x7f070033;
+        public static final int wallet_secondary_text_holo_dark=0x7f070034;
+        public static final int white=0x7f07002e;
+        public static final int yellow=0x7f07002d;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -586,43 +587,52 @@ containing a value of this type.
         public static final int common_plus_signin_btn_text_light_focused=0x7f02002e;
         public static final int common_plus_signin_btn_text_light_normal=0x7f02002f;
         public static final int common_plus_signin_btn_text_light_pressed=0x7f020030;
-        public static final int ic_action_bar=0x7f020031;
-        public static final int ic_alarm_white_48dp=0x7f020032;
-        public static final int ic_clear_white_48dp=0x7f020033;
-        public static final int ic_done_white_48dp=0x7f020034;
-        public static final int ic_fiber_manual_record_white_48dp=0x7f020035;
-        public static final int ic_followed=0x7f020036;
-        public static final int ic_followed_white=0x7f020037;
-        public static final int ic_following=0x7f020038;
-        public static final int ic_following_white=0x7f020039;
-        public static final int ic_help_outline_white_48dp=0x7f02003a;
-        public static final int ic_import_export_white_48dp=0x7f02003b;
-        public static final int ic_launcher=0x7f02003c;
-        public static final int ic_location_off_white_48dp=0x7f02003d;
-        public static final int ic_notification=0x7f02003e;
-        public static final int ic_plusone_medium_off_client=0x7f02003f;
-        public static final int ic_plusone_small_off_client=0x7f020040;
-        public static final int ic_plusone_standard_off_client=0x7f020041;
-        public static final int ic_plusone_tall_off_client=0x7f020042;
-        public static final int ic_room_white_48dp=0x7f020043;
-        public static final int list_item_selector=0x7f020044;
-        public static final int listview_background=0x7f020045;
-        public static final int places_ic_clear=0x7f020046;
-        public static final int places_ic_search=0x7f020047;
-        public static final int powered_by_google_dark=0x7f020048;
-        public static final int powered_by_google_light=0x7f020049;
-        public static final int preference_button_background=0x7f02004a;
-        public static final int session_item_status_background_active=0x7f02004b;
-        public static final int session_item_status_background_done=0x7f02004c;
-        public static final int session_item_status_background_not_connected=0x7f02004d;
-        public static final int session_item_status_background_not_localized=0x7f02004e;
-        public static final int session_item_status_background_pending=0x7f02004f;
-        public static final int session_item_status_background_unknown=0x7f020050;
-        public static final int simple_blue_background=0x7f020051;
-        public static final int simple_white_background=0x7f020052;
+        public static final int ic_access_time_gray_24dp=0x7f020031;
+        public static final int ic_action_bar=0x7f020032;
+        public static final int ic_alarm_white_48dp=0x7f020033;
+        public static final int ic_arrow_back_white_24dp=0x7f020034;
+        public static final int ic_check_white_24dp=0x7f020035;
+        public static final int ic_clear_white_48dp=0x7f020036;
+        public static final int ic_done_white_48dp=0x7f020037;
+        public static final int ic_fiber_manual_record_white_48dp=0x7f020038;
+        public static final int ic_followed=0x7f020039;
+        public static final int ic_followed_white=0x7f02003a;
+        public static final int ic_following=0x7f02003b;
+        public static final int ic_following_white=0x7f02003c;
+        public static final int ic_help_outline_white_48dp=0x7f02003d;
+        public static final int ic_import_export_white_48dp=0x7f02003e;
+        public static final int ic_launcher=0x7f02003f;
+        public static final int ic_location_off_white_48dp=0x7f020040;
+        public static final int ic_lock_gray_24dp=0x7f020041;
+        public static final int ic_loyalty_gray_24dp=0x7f020042;
+        public static final int ic_notification=0x7f020043;
+        public static final int ic_plusone_medium_off_client=0x7f020044;
+        public static final int ic_plusone_small_off_client=0x7f020045;
+        public static final int ic_plusone_standard_off_client=0x7f020046;
+        public static final int ic_plusone_tall_off_client=0x7f020047;
+        public static final int ic_refresh_gray_24dp=0x7f020048;
+        public static final int ic_room_white_48dp=0x7f020049;
+        public static final int ic_share_white_24dp=0x7f02004a;
+        public static final int ic_vpn_key_gray_24dp=0x7f02004b;
+        public static final int list_item_selector=0x7f02004c;
+        public static final int listview_background=0x7f02004d;
+        public static final int places_ic_clear=0x7f02004e;
+        public static final int places_ic_search=0x7f02004f;
+        public static final int powered_by_google_dark=0x7f020050;
+        public static final int powered_by_google_light=0x7f020051;
+        public static final int preference_button_background=0x7f020052;
+        public static final int session_item_status_background_active=0x7f020053;
+        public static final int session_item_status_background_done=0x7f020054;
+        public static final int session_item_status_background_not_connected=0x7f020055;
+        public static final int session_item_status_background_not_localized=0x7f020056;
+        public static final int session_item_status_background_pending=0x7f020057;
+        public static final int session_item_status_background_unknown=0x7f020058;
+        public static final int simple_blue_background=0x7f020059;
+        public static final int simple_white_background=0x7f02005a;
     }
     public static final class id {
-        public static final int action_settings=0x7f080096;
+        public static final int action_settings=0x7f08009a;
+        public static final int action_share=0x7f08009b;
         public static final int add_tracked=0x7f08002d;
         public static final int add_tracking=0x7f08002c;
         public static final int adding_layout=0x7f08002b;
@@ -640,21 +650,22 @@ containing a value of this type.
         public static final int buy_with_google=0x7f08001b;
         public static final int cast_notification_id=0x7f080000;
         public static final int classic=0x7f080022;
-        public static final int contribution_layout=0x7f08007a;
-        public static final int contribution_password_editText=0x7f080081;
-        public static final int contribution_password_layout=0x7f08007f;
-        public static final int contribution_password_title=0x7f080080;
-        public static final int contribution_publicID_editText=0x7f08007e;
-        public static final int contribution_publicID_layout=0x7f08007c;
-        public static final int contribution_publicID_title=0x7f08007d;
-        public static final int contribution_session_description=0x7f08007b;
+        public static final int contribution_layout=0x7f08007b;
+        public static final int contribution_password_editText=0x7f080082;
+        public static final int contribution_password_icon=0x7f080081;
+        public static final int contribution_password_layout=0x7f080080;
+        public static final int contribution_publicID_editText=0x7f08007f;
+        public static final int contribution_publicID_icon=0x7f08007e;
+        public static final int contribution_publicID_layout=0x7f08007d;
+        public static final int contribution_session_description=0x7f08007c;
         public static final int dark=0x7f080005;
         public static final int donate_with=0x7f08001c;
         public static final int donate_with_google=0x7f08001d;
-        public static final int ending_time=0x7f080047;
-        public static final int ending_time_layout=0x7f080045;
-        public static final int ending_time_title=0x7f080046;
-        public static final int global_layout=0x7f08004a;
+        public static final int ending_date=0x7f080049;
+        public static final int ending_time=0x7f080048;
+        public static final int ending_time_layout=0x7f080046;
+        public static final int ending_time_title=0x7f080047;
+        public static final int global_layout=0x7f08004c;
         public static final int google_wallet_classic=0x7f080023;
         public static final int google_wallet_grayscale=0x7f080024;
         public static final int google_wallet_monochrome=0x7f080025;
@@ -663,18 +674,18 @@ containing a value of this type.
         public static final int holo_light=0x7f08000f;
         public static final int hybrid=0x7f08000a;
         public static final int icon_only=0x7f080001;
-        public static final int immediate_creation_layout=0x7f08005f;
-        public static final int immediate_creation_name_setting_editText=0x7f080063;
-        public static final int immediate_creation_name_setting_layout=0x7f080061;
-        public static final int immediate_creation_name_setting_title=0x7f080062;
-        public static final int immediate_creation_rate_setting_layout=0x7f080064;
-        public static final int immediate_creation_rate_setting_title=0x7f080065;
-        public static final int immediate_creation_rate_spinner=0x7f080066;
-        public static final int immediate_hosted_session_description=0x7f080060;
+        public static final int immediate_creation_layout=0x7f080061;
+        public static final int immediate_creation_name_setting_editText=0x7f080065;
+        public static final int immediate_creation_name_setting_icon=0x7f080064;
+        public static final int immediate_creation_name_setting_layout=0x7f080063;
+        public static final int immediate_creation_rate_setting_icon=0x7f080067;
+        public static final int immediate_creation_rate_setting_layout=0x7f080066;
+        public static final int immediate_creation_rate_spinner=0x7f080068;
+        public static final int immediate_hosted_session_description=0x7f080062;
         public static final int light=0x7f080006;
         public static final int logo_only=0x7f08001e;
         public static final int main_layout=0x7f08002a;
-        public static final int map=0x7f080091;
+        public static final int map=0x7f080095;
         public static final int match_parent=0x7f080016;
         public static final int monochrome=0x7f080027;
         public static final int none=0x7f080009;
@@ -693,84 +704,87 @@ containing a value of this type.
         public static final int pref_session_rate=0x7f080039;
         public static final int pref_starting_date=0x7f08003b;
         public static final int pref_starting_time=0x7f08003a;
-        public static final int prepared_creation_endingDate_date_picker=0x7f080078;
-        public static final int prepared_creation_endingDate_setting_checkBox=0x7f080076;
-        public static final int prepared_creation_endingDate_setting_layout=0x7f080077;
-        public static final int prepared_creation_endingDate_time_picker=0x7f080079;
-        public static final int prepared_creation_layout=0x7f080067;
-        public static final int prepared_creation_name_setting_editText=0x7f08006b;
-        public static final int prepared_creation_name_setting_layout=0x7f080069;
-        public static final int prepared_creation_name_setting_title=0x7f08006a;
-        public static final int prepared_creation_password_setting_editText=0x7f080071;
-        public static final int prepared_creation_password_setting_layout=0x7f08006f;
-        public static final int prepared_creation_password_setting_title=0x7f080070;
-        public static final int prepared_creation_rate_setting_layout=0x7f08006c;
-        public static final int prepared_creation_rate_setting_title=0x7f08006d;
-        public static final int prepared_creation_rate_spinner=0x7f08006e;
-        public static final int prepared_creation_startingDate_date_picker=0x7f080074;
-        public static final int prepared_creation_startingDate_setting_layout=0x7f080073;
-        public static final int prepared_creation_startingDate_setting_title=0x7f080072;
-        public static final int prepared_creation_startingDate_time_picker=0x7f080075;
-        public static final int prepared_hosted_session_description=0x7f080068;
+        public static final int prepared_creation_endingDate_selector=0x7f080079;
+        public static final int prepared_creation_endingDate_setting_layout=0x7f080078;
+        public static final int prepared_creation_endingTime_selector=0x7f08007a;
+        public static final int prepared_creation_layout=0x7f080069;
+        public static final int prepared_creation_name_setting_editText=0x7f08006d;
+        public static final int prepared_creation_name_setting_icon=0x7f08006c;
+        public static final int prepared_creation_name_setting_layout=0x7f08006b;
+        public static final int prepared_creation_password_setting_editText=0x7f080073;
+        public static final int prepared_creation_password_setting_icon=0x7f080072;
+        public static final int prepared_creation_password_setting_layout=0x7f080071;
+        public static final int prepared_creation_rate_setting_icon=0x7f08006f;
+        public static final int prepared_creation_rate_setting_layout=0x7f08006e;
+        public static final int prepared_creation_rate_spinner=0x7f080070;
+        public static final int prepared_creation_startingDate_selector=0x7f080076;
+        public static final int prepared_creation_startingDate_setting_layout=0x7f080074;
+        public static final int prepared_creation_startingTime_selector=0x7f080077;
+        public static final int prepared_creation_time_setting_icon=0x7f080075;
+        public static final int prepared_hosted_session_description=0x7f08006a;
         public static final int primary_layout=0x7f08003e;
         public static final int production=0x7f080010;
-        public static final int public_ID_global_layout=0x7f08004c;
-        public static final int public_token=0x7f080048;
-        public static final int sampling_global_layout=0x7f080050;
+        public static final int public_ID_global_layout=0x7f08004e;
+        public static final int public_token=0x7f08004a;
+        public static final int sampling_global_layout=0x7f080052;
         public static final int sandbox=0x7f080011;
         public static final int satellite=0x7f08000c;
         public static final int selectionDetails=0x7f080015;
         public static final int session_deletion_view=0x7f08002f;
-        public static final int session_joining_description=0x7f080092;
+        public static final int session_joining_description=0x7f080096;
         public static final int session_joining_layout=0x7f08002e;
-        public static final int session_joining_name_setting_layout=0x7f080093;
-        public static final int session_joining_publicID_editText=0x7f080095;
-        public static final int session_joining_publicID_title=0x7f080094;
+        public static final int session_joining_name_setting_layout=0x7f080097;
+        public static final int session_joining_publicID_editText=0x7f080099;
+        public static final int session_joining_publicID_icon=0x7f080098;
         public static final int session_name=0x7f080041;
-        public static final int session_status=0x7f080049;
+        public static final int session_status=0x7f08004b;
         public static final int session_type=0x7f08003f;
         public static final int slide=0x7f080029;
         public static final int standard=0x7f080002;
+        public static final int start_title=0x7f080043;
+        public static final int starting_date=0x7f080045;
         public static final int starting_time=0x7f080044;
         public static final int starting_time_layout=0x7f080042;
-        public static final int starting_time_title=0x7f080043;
         public static final int strict_sandbox=0x7f080012;
-        public static final int tabhost=0x7f08005e;
+        public static final int tabhost=0x7f080060;
         public static final int terrain=0x7f08000d;
         public static final int test=0x7f080013;
         public static final int text_layout=0x7f080040;
-        public static final int tracked_session_ending_date=0x7f08005b;
-        public static final int tracked_session_ending_time=0x7f080057;
-        public static final int tracked_session_ending_timestamp_label=0x7f080053;
-        public static final int tracked_session_first_values_layout=0x7f080055;
-        public static final int tracked_session_label_layout=0x7f080051;
-        public static final int tracked_session_public_ID_instructions=0x7f08004d;
-        public static final int tracked_session_public_token=0x7f08004e;
-        public static final int tracked_session_sample_number_label=0x7f080054;
-        public static final int tracked_session_sampling_rate=0x7f08005c;
-        public static final int tracked_session_second_values_layout=0x7f080059;
-        public static final int tracked_session_share=0x7f08004f;
-        public static final int tracked_session_starting_date=0x7f08005a;
-        public static final int tracked_session_starting_time=0x7f080056;
-        public static final int tracked_session_starting_timestamp_label=0x7f080052;
-        public static final int tracked_session_status=0x7f08004b;
-        public static final int tracked_session_stop_tracking=0x7f08005d;
-        public static final int tracked_session_submitted_sample=0x7f080058;
-        public static final int tracking_session_ending_date=0x7f08008f;
-        public static final int tracking_session_ending_time=0x7f08008b;
-        public static final int tracking_session_ending_timestamp_label=0x7f080087;
-        public static final int tracking_session_first_values_layout=0x7f080089;
-        public static final int tracking_session_label_layout=0x7f080085;
-        public static final int tracking_session_public_token=0x7f080084;
-        public static final int tracking_session_public_token_layout=0x7f080083;
-        public static final int tracking_session_received_sample=0x7f08008c;
-        public static final int tracking_session_sample_number_label=0x7f080088;
-        public static final int tracking_session_sampling_rate=0x7f080090;
-        public static final int tracking_session_second_values_layout=0x7f08008d;
-        public static final int tracking_session_starting_date=0x7f08008e;
-        public static final int tracking_session_starting_time=0x7f08008a;
-        public static final int tracking_session_starting_timestamp_label=0x7f080086;
-        public static final int tracking_session_status=0x7f080082;
+        public static final int tracked_session_creation_bar_back=0x7f080083;
+        public static final int tracked_session_creation_bar_title=0x7f080084;
+        public static final int tracked_session_creation_bar_validation=0x7f080085;
+        public static final int tracked_session_ending_date=0x7f08005d;
+        public static final int tracked_session_ending_time=0x7f080059;
+        public static final int tracked_session_ending_timestamp_label=0x7f080055;
+        public static final int tracked_session_first_values_layout=0x7f080057;
+        public static final int tracked_session_label_layout=0x7f080053;
+        public static final int tracked_session_public_ID_instructions=0x7f08004f;
+        public static final int tracked_session_public_token=0x7f080050;
+        public static final int tracked_session_sample_number_label=0x7f080056;
+        public static final int tracked_session_sampling_rate=0x7f08005e;
+        public static final int tracked_session_second_values_layout=0x7f08005b;
+        public static final int tracked_session_share=0x7f080051;
+        public static final int tracked_session_starting_date=0x7f08005c;
+        public static final int tracked_session_starting_time=0x7f080058;
+        public static final int tracked_session_starting_timestamp_label=0x7f080054;
+        public static final int tracked_session_status=0x7f08004d;
+        public static final int tracked_session_stop_tracking=0x7f08005f;
+        public static final int tracked_session_submitted_sample=0x7f08005a;
+        public static final int tracking_session_ending_date=0x7f080093;
+        public static final int tracking_session_ending_time=0x7f08008f;
+        public static final int tracking_session_ending_timestamp_label=0x7f08008b;
+        public static final int tracking_session_first_values_layout=0x7f08008d;
+        public static final int tracking_session_label_layout=0x7f080089;
+        public static final int tracking_session_public_token=0x7f080088;
+        public static final int tracking_session_public_token_layout=0x7f080087;
+        public static final int tracking_session_received_sample=0x7f080090;
+        public static final int tracking_session_sample_number_label=0x7f08008c;
+        public static final int tracking_session_sampling_rate=0x7f080094;
+        public static final int tracking_session_second_values_layout=0x7f080091;
+        public static final int tracking_session_starting_date=0x7f080092;
+        public static final int tracking_session_starting_time=0x7f08008e;
+        public static final int tracking_session_starting_timestamp_label=0x7f08008a;
+        public static final int tracking_session_status=0x7f080086;
         public static final int wide=0x7f080003;
         public static final int wrap_content=0x7f080017;
     }
@@ -789,11 +803,13 @@ containing a value of this type.
         public static final int session_item=0x7f030008;
         public static final int tracked_activity_session=0x7f030009;
         public static final int tracked_session_creation=0x7f03000a;
-        public static final int tracking_activity_session=0x7f03000b;
-        public static final int tracking_session_creation=0x7f03000c;
+        public static final int tracked_session_creation_bar_layout=0x7f03000b;
+        public static final int tracking_activity_session=0x7f03000c;
+        public static final int tracking_session_creation=0x7f03000d;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
+        public static final int share=0x7f0c0001;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f040000;
@@ -801,6 +817,7 @@ containing a value of this type.
     public static final class string {
         public static final int accept=0x7f060002;
         public static final int action_settings=0x7f06002c;
+        public static final int action_share=0x7f06002d;
         public static final int app_name=0x7f06002b;
         /**  Brand name for Facebook [DO NOT TRANSLATE] 
          */
@@ -808,9 +825,9 @@ containing a value of this type.
         /**  Brand name for Google [DO NOT TRANSLATE] 
          */
         public static final int auth_google_play_services_client_google_display_name=0x7f060006;
-        public static final int button_copy_token_label=0x7f06004b;
-        public static final int button_share=0x7f06004d;
-        public static final int button_stop_tracking=0x7f06004c;
+        public static final int button_copy_token_label=0x7f06004e;
+        public static final int button_share=0x7f060050;
+        public static final int button_stop_tracking=0x7f06004f;
         /**  Message of the notification to indicate an active cast display connection.  [CHAR LIMIT=80] NOTE: Same text as msgid="794424023757290105" 
          */
         public static final int cast_notification_connected_message=0x7f060025;
@@ -920,82 +937,87 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060023;
-        public static final int contribution_session_description=0x7f06003e;
+        public static final int contribution_session_description=0x7f060041;
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
         public static final int decline=0x7f060003;
-        public static final int empty_list=0x7f060030;
-        public static final int immediate_hosted_session_description=0x7f06003c;
-        public static final int item_ending_time_title=0x7f060046;
+        public static final int empty_list=0x7f060031;
+        public static final int immediate_hosted_session_description=0x7f06003f;
+        public static final int item_end_title=0x7f060049;
         /**  session Items in List View 
          */
-        public static final int item_starting_time_title=0x7f060045;
-        public static final int joined_session_description=0x7f06003f;
+        public static final int item_start_title=0x7f060048;
+        public static final int joined_session_description=0x7f060042;
         /**  menu activity strings 
  main menu 
          */
-        public static final int menu_activity_title=0x7f06002d;
-        public static final int network_failure_message=0x7f060044;
-        public static final int new_tracked_session_button_string=0x7f06002e;
-        public static final int new_tracking_session_button_string=0x7f06002f;
-        public static final int notification_text_tracked_session_plural=0x7f06005e;
-        public static final int notification_text_tracked_session_singular=0x7f06005f;
-        public static final int notification_text_tracking_session_plural=0x7f060060;
-        public static final int notification_text_tracking_session_singular=0x7f060061;
+        public static final int menu_activity_title=0x7f06002e;
+        public static final int network_failure_message=0x7f060047;
+        public static final int new_tracked_session_button_string=0x7f06002f;
+        public static final int new_tracking_session_button_string=0x7f060030;
+        public static final int notification_text_tracked_session_plural=0x7f060061;
+        public static final int notification_text_tracked_session_singular=0x7f060062;
+        public static final int notification_text_tracking_session_plural=0x7f060063;
+        public static final int notification_text_tracking_session_singular=0x7f060064;
         /**  Notification Strings 
          */
-        public static final int notification_title_plural=0x7f06005c;
-        public static final int notification_title_singular=0x7f06005d;
+        public static final int notification_title_plural=0x7f06005f;
+        public static final int notification_title_singular=0x7f060060;
+        /**  Description for pictures 
+         */
+        public static final int picDesc=0x7f060065;
         /**  Description of the button that clears the search input when searching for places. 
          */
         public static final int place_autocomplete_clear_button=0x7f060029;
         /**  Search box hint text for Place Autocomplete. [CHAR LIMIT=15] 
          */
         public static final int place_autocomplete_search_hint=0x7f060028;
-        public static final int pref_session_ending_date_item=0x7f060052;
-        public static final int pref_session_ending_date_title=0x7f060059;
-        public static final int pref_session_ending_message=0x7f06005b;
-        public static final int pref_session_ending_time_item=0x7f060053;
-        public static final int pref_session_ending_time_title=0x7f06005a;
+        public static final int pref_session_ending_date_item=0x7f060055;
+        public static final int pref_session_ending_date_title=0x7f06005c;
+        public static final int pref_session_ending_message=0x7f06005e;
+        public static final int pref_session_ending_time_item=0x7f060056;
+        public static final int pref_session_ending_time_title=0x7f06005d;
         /**  session activity setting strings 
          */
-        public static final int pref_session_name_item=0x7f06004e;
-        public static final int pref_session_name_title=0x7f060054;
-        public static final int pref_session_rate_item=0x7f06004f;
-        public static final int pref_session_rate_title=0x7f060055;
-        public static final int pref_session_starting_date_item=0x7f060050;
-        public static final int pref_session_starting_date_title=0x7f060056;
-        public static final int pref_session_starting_message=0x7f060058;
-        public static final int pref_session_starting_time_item=0x7f060051;
-        public static final int pref_session_starting_time_title=0x7f060057;
-        public static final int prepared_hosted_session_description=0x7f06003d;
-        public static final int public_ID_instructions=0x7f06004a;
+        public static final int pref_session_name_item=0x7f060051;
+        public static final int pref_session_name_title=0x7f060057;
+        public static final int pref_session_rate_item=0x7f060052;
+        public static final int pref_session_rate_title=0x7f060058;
+        public static final int pref_session_starting_date_item=0x7f060053;
+        public static final int pref_session_starting_date_title=0x7f060059;
+        public static final int pref_session_starting_message=0x7f06005b;
+        public static final int pref_session_starting_time_item=0x7f060054;
+        public static final int pref_session_starting_time_title=0x7f06005a;
+        public static final int prepared_hosted_session_description=0x7f060040;
+        public static final int public_ID_instructions=0x7f06004d;
         /**  session activity strings 
          */
-        public static final int session_activity_from_date=0x7f060047;
-        public static final int session_activity_sample_number=0x7f060049;
-        public static final int session_activity_to_date=0x7f060048;
-        public static final int session_creation_cancelation=0x7f060041;
-        public static final int session_creation_validation=0x7f060040;
-        public static final int session_deletion_description=0x7f060043;
+        public static final int session_activity_from_date=0x7f06004a;
+        public static final int session_activity_sample_number=0x7f06004c;
+        public static final int session_activity_to_date=0x7f06004b;
+        public static final int session_creation_cancelation=0x7f060044;
+        public static final int session_creation_validation=0x7f060043;
+        public static final int session_deletion_description=0x7f060046;
         /**  session deletion dialog 
          */
-        public static final int session_deletion_title_dialogue=0x7f060042;
-        public static final int session_ending_time_title=0x7f060039;
-        public static final int session_name_title=0x7f060036;
-        public static final int session_password_title=0x7f06003b;
-        public static final int session_public_ID_title=0x7f06003a;
-        public static final int session_rate_title=0x7f060037;
-        public static final int session_starting_time_title=0x7f060038;
+        public static final int session_deletion_title_dialogue=0x7f060045;
+        public static final int session_ending_date_title=0x7f06003c;
+        public static final int session_ending_time_title=0x7f06003b;
+        public static final int session_name_title=0x7f060037;
+        public static final int session_password_title=0x7f06003e;
+        public static final int session_public_ID_title=0x7f06003d;
+        public static final int session_rate_title=0x7f060038;
+        public static final int session_starting_date_title=0x7f06003a;
+        public static final int session_starting_time_title=0x7f060039;
         public static final int store_picture_message=0x7f060001;
         public static final int store_picture_title=0x7f060000;
-        public static final int tracked_session_contribution_tab_title=0x7f060034;
-        public static final int tracked_session_creation_immediate_tab_title=0x7f060033;
-        public static final int tracked_session_creation_prepared_tab_title=0x7f060032;
+        public static final int tracked_session_contribution_tab_title=0x7f060035;
+        public static final int tracked_session_creation_immediate_tab_title=0x7f060034;
+        public static final int tracked_session_creation_prepared_tab_title=0x7f060033;
         /**  creation dialog strings 
          */
-        public static final int tracked_session_creation_title_dialogue=0x7f060031;
-        public static final int tracking_session_creation_title_dialogue=0x7f060035;
+        public static final int tracked_session_creation_title_dialogue=0x7f060032;
+        public static final int tracking_session_creation_title_dialogue=0x7f060036;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
  Text on a button that allows a user to make a payment with Google Wallet
@@ -1032,6 +1054,7 @@ containing a value of this type.
         public static final int AppTheme=0x7f050008;
         public static final int CustomActionBarColor=0x7f050009;
         public static final int CustomActionBarText=0x7f05000a;
+        public static final int CustomDialog=0x7f05000b;
         /**  Preview application theme. 
          */
         public static final int Theme_AppInvite_Preview=0x7f050002;

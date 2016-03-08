@@ -174,7 +174,9 @@ public class SessionManager implements ISessionCreationListener, Serializable {
 			this.sessionList.add(joinedSession);
 			//fetching session information
 			joinedSession.getNewMetadata();
-			
+			//triggering sample fetching for current running sessions so that samples
+			//can be read at the very beginning (doesn't interfere with pending or completed sessions)
+			joinedSession.getNewPositions();
 			//calling GUI for refresh
 			if(this.callbackGUI!=null){
 				//session get the focus, GUI must be updated 
@@ -217,7 +219,7 @@ public class SessionManager implements ISessionCreationListener, Serializable {
 				if(this.callbackGUI!=null){
 					//manager got the focus, GUI must be updated
 					Log.d(Log_Tag,"manager is under focus : updating GUI" );
-					this.callbackGUI.onFailStatusReturnedOperation(ConstantGUI.TOAST_LABEL_FOR_SESSION_CREATION+ConstantGUI.TOAST_LABEL_FOR_TOKEN_ISSUE);
+					this.callbackGUI.onFailStatusReturnedOperation(ConstantGUI.TOAST_LABEL_FOR_SESSION_CREATION);
 				}else{
 					//manager not under focus no GUI to be updated
 					Log.d(Log_Tag,"manager isn't under focus : no GUI update" );

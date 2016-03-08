@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
+
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.inputs.DialogInputConverter;
 import com.example.sharedtracking.inputs.DialogInputException;
@@ -12,7 +13,9 @@ import com.example.sharedtracking.inputs.DialogInputSanitizer;
 import com.example.sharedtracking.session.HostedSession;
 import com.example.sharedtracking.views.ConstantGUI;
 import com.st.sharedtracking.R;
+
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -171,6 +174,9 @@ public class TrackedActivitySettingFragment extends DialogFragment{
     	builder.setTitle(R.string.pref_session_name_title);
     	final EditText input = new EditText(getActivity());
     	input.setText(currentName);
+    	input.setMaxLines(1);
+    	input.setInputType(InputType.TYPE_CLASS_TEXT);
+    	
     	builder.setView(input);
     	// Set up the buttons
     	builder.setPositiveButton(R.string.session_creation_validation, new DialogInterface.OnClickListener() { 
@@ -254,6 +260,7 @@ public class TrackedActivitySettingFragment extends DialogFragment{
 	        		}else{
 	        			DialogInputSanitizer.sanitizeStartTime(newStartingTimestamp,endingTimestamp);
 	        		}
+	        		DialogInputSanitizer.verifyStartingTimeSynchro(newStartingTimestamp,updatedSession.getStartingTime());
 	            	Locale current = getActivity().getResources().getConfiguration().locale;
 	            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
 	            	String newStartingTimestampString = dateFormat.format(newStartingTimestamp);	
@@ -315,7 +322,7 @@ public class TrackedActivitySettingFragment extends DialogFragment{
         	}
        };     
         TimePickerDialog startTimeDialog = new TimePickerDialog(getActivity(),startingTimeSetListener, hour, minute,true);
-        startTimeDialog.setTitle(getActivity().getString(R.string.pref_session_starting_date_title));
+        startTimeDialog.setTitle(getActivity().getString(R.string.pref_session_starting_time_title));
         startTimeDialog.setMessage(getActivity().getString(R.string.pref_session_starting_message));
         startTimeDialog.show();
         Log.d(LogTag,"Dialog open for Starting Time Update");
@@ -351,7 +358,8 @@ public class TrackedActivitySettingFragment extends DialogFragment{
 	            	newCalendar.set(newYear, newMonth, newDay, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE));
 	            	Timestamp newEndingTimestamp = new Timestamp(newCalendar.getTimeInMillis());
 	            	DialogInputSanitizer.sanitizeInputAsEndingDate(newEndingTimestamp,updatedSession.getStartingTime());
-	            	
+	            	DialogInputSanitizer.verifyEndingTimeSynchro(newEndingTimestamp,updatedSession.getEndingTime());
+	        		
 	            	Locale current = getActivity().getResources().getConfiguration().locale;
 	            	SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TIMESTAMP_STRING_FORMAT,current);
 	            	String newEndingTimestampString = dateFormat.format(newEndingTimestamp);	
@@ -415,7 +423,7 @@ public class TrackedActivitySettingFragment extends DialogFragment{
         	}
        };     
         TimePickerDialog endingTimeDialog = new TimePickerDialog(getActivity(),endingTimeSetListener, hour, minute,true);
-        endingTimeDialog.setTitle(getActivity().getString(R.string.pref_session_starting_date_title));
+        endingTimeDialog.setTitle(getActivity().getString(R.string.pref_session_ending_time_title));
         endingTimeDialog.setMessage(getActivity().getString(R.string.pref_session_ending_message));
         endingTimeDialog.show();
         Log.d(LogTag,"Dialog open for Ending Time Update");

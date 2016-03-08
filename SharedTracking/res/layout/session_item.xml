@@ -38,23 +38,28 @@
 	    	android:orientation="horizontal">
 	    	
 	           	<TextView
-		    	android:id="@+id/starting_time_title"
+		    	android:id="@+id/start_title"
 		    	android:layout_width="0dp"
 		    	android:layout_height="wrap_content"
 		    	android:gravity="center"
 		    	android:layout_marginEnd="3dp"
 		    	android:layout_marginRight="3dp"
-		    	android:text="@string/item_starting_time_title"
+		    	android:text="@string/item_start_title"
 		    	android:layout_weight="1"/>
     			
            		<TextView
         		android:id="@+id/starting_time"
         		android:layout_width="0dp"
         		android:layout_height="wrap_content"
-        		android:gravity="start"
-        		android:layout_marginStart="3dp"
-		    	android:layout_marginLeft="3dp"
-        		android:layout_weight="3"/>
+        		android:gravity="center"
+        		android:layout_weight="1"/>
+           		
+           		<TextView
+        		android:id="@+id/starting_date"
+        		android:layout_width="0dp"
+        		android:layout_height="wrap_content"
+        		android:gravity="center"
+        		android:layout_weight="2"/>
            
            </LinearLayout>
            		
@@ -71,7 +76,7 @@
 		    	android:gravity="center"
 		    	android:layout_marginEnd="3dp"
 		    	android:layout_marginRight="3dp"
-		    	android:text="@string/item_ending_time_title"
+		    	android:text="@string/item_end_title"
 		    	android:layout_weight="1"/>
 	    	
 	    	
@@ -79,11 +84,16 @@
         		android:id="@+id/ending_time"
         		android:layout_width="0dp"
         		android:layout_height="wrap_content"
-        		android:gravity="start"
-        		android:layout_marginStart="3dp"
-        		android:layout_marginLeft="3dp"
-        		android:layout_weight="3"/>
-           		
+        		android:gravity="center"
+        		android:layout_weight="1"/>
+
+           		<TextView
+        		android:id="@+id/ending_date"
+        		android:layout_width="0dp"
+        		android:layout_height="wrap_content"
+        		android:gravity="center"
+        		android:layout_weight="2"/>
+           				
            </LinearLayout>
            	
           	<TextView

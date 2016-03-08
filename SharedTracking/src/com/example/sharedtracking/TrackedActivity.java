@@ -23,7 +23,6 @@ import com.example.sharedtracking.inputs.DialogInputConverter;
 import com.example.sharedtracking.session.HostedSession;
 import com.example.sharedtracking.session.Session;
 import com.example.sharedtracking.views.ConstantGUI;
-import com.example.sharedtracking.views.ConstantGUI.DateOverlappingRunnable;
 import com.st.sharedtracking.R;
 
 /**A tracked activity associated to one hosted session
@@ -126,8 +125,6 @@ public class TrackedActivity extends BaseActivity {
 			//START
 			TextView startTimeTV = (TextView) findViewById(R.id.tracked_session_starting_time);	
 			TextView startDateTV = (TextView) findViewById(R.id.tracked_session_starting_date);	
-			//View turned invisible during updates makes changes smoothers  
-			startDateTV.setVisibility(View.INVISIBLE);
 			
 			Timestamp start = session.getStartingTime();
 			String startTimeString;
@@ -141,13 +138,10 @@ public class TrackedActivity extends BaseActivity {
 			}
 			startTimeTV.setText(startTimeString);
 			startDateTV.setText(startDateString);
-			startDateTV.post( new DateOverlappingRunnable(startDateTV,start,current));
 			
 			//END
 			TextView endTimeTV = (TextView) findViewById(R.id.tracked_session_ending_time);
 			TextView endDateTV = (TextView) findViewById(R.id.tracked_session_ending_date);
-			//View turned invisible during updates makes changes smoothers  
-			endDateTV.setVisibility(View.INVISIBLE);
 			Timestamp end = session.getEndingTime();
 			String endTimeString;
 			String endDateString;
@@ -160,7 +154,6 @@ public class TrackedActivity extends BaseActivity {
 			}
 			endTimeTV.setText(endTimeString);
 			endDateTV.setText(endDateString);
-			endTimeTV.post( new DateOverlappingRunnable(endTimeTV,end,current));
 			
 			//Sampling Info
 			TextView submittedSampleTV = (TextView) findViewById(R.id.tracked_session_submitted_sample);
@@ -202,8 +195,6 @@ public class TrackedActivity extends BaseActivity {
 		    DialogFragment newFragment = new TrackedActivitySettingFragment();
 		    newFragment.show(ft, "dialog");
 
-		    
-		    
 	        default:
 	            // If we got here, the user's action was not recognized.
 	            // Invoke the superclass to handle it.
@@ -224,9 +215,8 @@ public class TrackedActivity extends BaseActivity {
 				//if session is null, update is aborted
 				Log.d(this.getActivityClassName(),"impossible to update GUI : session object is null");
 				throw new GraphicalException("Tracked Activity is updating a null session");
-			}
-			TextView tokenTextView = (TextView) findViewById(R.id.tracked_session_public_token);	
-			String token = tokenTextView.getText().toString();
+			}	
+			String token = boundSession.getPublicID();
 			//preparing intent
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);

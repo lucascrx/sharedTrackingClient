@@ -16,7 +16,6 @@ import com.example.sharedtracking.types.Sample;
 import com.example.sharedtracking.views.ConstantGUI;
 import com.example.sharedtracking.views.MarkerColorManager;
 import com.example.sharedtracking.views.PositionedMarker;
-import com.example.sharedtracking.views.ConstantGUI.DateOverlappingRunnable;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -38,7 +37,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -88,8 +88,42 @@ public class TrackingActivity extends BaseActivity implements OnMapReadyCallback
        //initialize map
        initilizeMap();
     }
+    
+    //creating setting preferences menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+      getMenuInflater().inflate(R.menu.share, menu);
+      return true;
+    }
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.action_share:
+	    		Session boundSession = this.manager.getSessionList().get(this.indexSession);
+	    		try{
+	    			if(boundSession==null){
+	    				//if session is null, update is aborted
+	    				Log.d(this.getActivityClassName(),"impossible to update GUI : session object is null");
+	    				throw new GraphicalException("Tracked Activity is updating a null session");
+	    			}	
+	    			String token = boundSession.getPublicID();
+	    			//preparing intent
+	    			Intent sendIntent = new Intent();
+	    			sendIntent.setAction(Intent.ACTION_SEND);
+	    			sendIntent.putExtra(Intent.EXTRA_TEXT,token);
+	    			sendIntent.setType("text/plain");
+	    			startActivity(sendIntent);		
+	    		}catch(GraphicalException e){
+	    			e.printStackTrace();
+	    		}
+	        default:
+	            // If we got here, the user's action was not recognized.
+	            // Invoke the superclass to handle it.
+	            return super.onOptionsItemSelected(item);
 
+	    }
+	}
 	
 	
 	public void updateGUI() {
@@ -147,8 +181,6 @@ public class TrackingActivity extends BaseActivity implements OnMapReadyCallback
 			//START
 			TextView startTimeTV = (TextView) findViewById(R.id.tracking_session_starting_time);	
 			TextView startDateTV = (TextView) findViewById(R.id.tracking_session_starting_date);	
-			//View turned invisible during updates makes changes smoothers  
-			startDateTV.setVisibility(View.INVISIBLE);
 			Timestamp start = session.getStartingTime();
 			String startTimeString;
 			String startDateString;
@@ -161,13 +193,10 @@ public class TrackingActivity extends BaseActivity implements OnMapReadyCallback
 			}
 			startTimeTV.setText(startTimeString);
 			startDateTV.setText(startDateString);
-			startDateTV.post( new DateOverlappingRunnable(startDateTV,start,current));
 			
 			//END
 			TextView endTimeTV = (TextView) findViewById(R.id.tracking_session_ending_time);
 			TextView endDateTV = (TextView) findViewById(R.id.tracking_session_ending_date);
-			//View turned invisible during updates makes changes smoothers  
-			endDateTV.setVisibility(View.INVISIBLE);
 			Timestamp end = session.getEndingTime();
 			String endTimeString;
 			String endDateString;
@@ -180,7 +209,6 @@ public class TrackingActivity extends BaseActivity implements OnMapReadyCallback
 			}
 			endTimeTV.setText(endTimeString);
 			endDateTV.setText(endDateString);
-			endTimeTV.post( new DateOverlappingRunnable(endTimeTV,end,current));
 			
 			//Sampling Info
 			TextView receivedSampleTV = (TextView) findViewById(R.id.tracking_session_received_sample);

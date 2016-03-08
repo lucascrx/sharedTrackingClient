@@ -2,6 +2,8 @@ package com.example.sharedtracking.inputs;
 
 import java.sql.Timestamp;
 
+import com.example.sharedtracking.views.ConstantGUI;
+
 public class DialogInputSanitizer {
 	
 	
@@ -12,7 +14,7 @@ public class DialogInputSanitizer {
 	 */
 	public static void sanitizeInputAsPublicID(String input) throws DialogInputException{
 		if(input==null || !input.matches( ".{25,50}" )){
-			throw new DialogInputException("Token must contain from 25 to 50 characters");
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_INVALID_PUBLIC_ID);
 		}
 	}
 	
@@ -23,7 +25,7 @@ public class DialogInputSanitizer {
 	 */
 	public static void sanitizeInputAsName(String input) throws DialogInputException{
 		if(input==null || !input.matches( ".{4,50}" )){
-			throw new DialogInputException("Session name must contain from 4 to 50 characters ");
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_INVALID_NAME);
 		}
 		
 	}
@@ -35,7 +37,7 @@ public class DialogInputSanitizer {
 	 */
 	public static void sanitizeInputAsRate(Integer input) throws DialogInputException{
 		if(input == null || input<=0 ){
-			throw new DialogInputException("The provided rate is null");
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_INVALID_RATE);
 		}
 	}
 	
@@ -46,7 +48,7 @@ public class DialogInputSanitizer {
 	 */
 	public static void sanitizeInputAsPassword(String input) throws DialogInputException{
 		if(input==null || !input.matches( ".{10,50}" )){
-			throw new DialogInputException("Password must contain from 10 to 50 characters");
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_INVALID_PASSWORD);
 		}
 	}
 	
@@ -58,8 +60,10 @@ public class DialogInputSanitizer {
 	public static void sanitizeInputAsStartingDateAlone(Timestamp input) throws DialogInputException{
 		java.util.Date date= new java.util.Date();
 		Timestamp now = new Timestamp(date.getTime());
-		if(input==null || now.after(input)){
-			throw new DialogInputException("Starting time is null or has already occured");
+		if(input==null ){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_START_NOT_SET);
+		}if(now.after(input)){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_START_OCCURED);
 		}
 	}		
 	
@@ -71,8 +75,12 @@ public class DialogInputSanitizer {
 	public static void sanitizeStartTime(Timestamp input, Timestamp endTime) throws DialogInputException{
 		java.util.Date date= new java.util.Date();
 		Timestamp now = new Timestamp(date.getTime());
-		if(input==null || now.after(input) || input.after(endTime)){
-			throw new DialogInputException("Starting time has already occured, or is after end Time");
+		if(input==null ){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_START_NOT_SET);
+		}if(now.after(input)){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_START_OCCURED);
+		}if(input.after(endTime)){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_START_AFTER_END);
 		}
 	}
 	
@@ -85,8 +93,12 @@ public class DialogInputSanitizer {
 	public static void sanitizeInputAsEndingDate(Timestamp input, Timestamp startTime) throws DialogInputException{
 		java.util.Date date= new java.util.Date();
 		Timestamp now = new Timestamp(date.getTime());
-		if(input==null || now.after(input) || input.before(startTime)){
-			throw new DialogInputException("End time has already occured, or is before start Time");
+		if(input==null ){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_END_NOT_SET);
+		}if(now.after(input)){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_END_OCCURED);
+		}if(input.before(startTime)){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_END_BEFORE_START);
 		}
 	}
 	
@@ -96,8 +108,12 @@ public class DialogInputSanitizer {
 	public static void verifyStartingTimeSynchro(Timestamp newStartTime, Timestamp oldStartTime) throws DialogInputException{
 		java.util.Date date= new java.util.Date();
 		Timestamp now = new Timestamp(date.getTime());
-		if(newStartTime==null || now.after(oldStartTime) || oldStartTime.after(newStartTime)){
-			throw new DialogInputException("Invalid Operation on Starting Time");
+		if(newStartTime==null ){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_START_NOT_SET);
+		}if(now.after(oldStartTime)){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_OLD_START_OCCURED);
+		}if(oldStartTime.after(newStartTime)){
+			throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_START_WRONG_SCHEDULING);
 		}
 	}
 	
@@ -108,12 +124,18 @@ public class DialogInputSanitizer {
 		java.util.Date date= new java.util.Date();
 		Timestamp now = new Timestamp(date.getTime());
 		if(oldEndTime!=null){
-			if(newEndTime==null || now.after(oldEndTime) || now.after(newEndTime)){
-				throw new DialogInputException("Invalid Operation on Ending Time");
+			if(newEndTime==null ){
+				throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_END_NOT_SET);
+			}if(now.after(oldEndTime)){
+				throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_OLD_END_OCCURED);
+			}if(now.after(newEndTime)){
+				throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_END_OCCURED);
 			}
 		}else{
-			if(newEndTime==null || now.after(newEndTime)){
-				throw new DialogInputException("Invalid Operation on Ending Time");
+			if(newEndTime==null ){
+				throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_END_NOT_SET);
+			}if(now.after(newEndTime)){
+				throw new DialogInputException(ConstantGUI.TOAST_LABEL_INPUT_EXCEPTION_END_OCCURED);
 			}
 		}
 	}

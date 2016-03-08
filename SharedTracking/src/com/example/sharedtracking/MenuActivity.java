@@ -3,6 +3,7 @@ package com.example.sharedtracking;
 import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,9 +16,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.example.sharedtracking.constants.Constants;
 import com.example.sharedtracking.inputs.SessionDeletionDialog;
-import com.example.sharedtracking.inputs.TrackedSessionCreationDialog;
+import com.example.sharedtracking.inputs.TrackedSessionCreationActivity;
 import com.example.sharedtracking.inputs.TrackingSessionCreationDialog;
 import com.example.sharedtracking.session.HostedSession;
 import com.example.sharedtracking.session.JoinedSession;
@@ -132,8 +134,8 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 	
 	public void createHostedSession(View v){
 		if (handleUserLocationDynamicPermission()){
-			TrackedSessionCreationDialog dialog = new TrackedSessionCreationDialog();
-			dialog.show(getFragmentManager(), "Tracked Fragment Dialog");
+	        Intent intent = new Intent(this, TrackedSessionCreationActivity.class);
+	        startActivityForResult(intent,Constants.CREATION_REQUEST_CODE);
 		}
 	}
 	
@@ -141,6 +143,40 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 		TrackingSessionCreationDialog dialog = new TrackingSessionCreationDialog();
 		dialog.show(getFragmentManager(), "Tracking Fragment Dialog");
 	}
+	
+	
+	/**Retrieving input from creation session activity intents**/
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		if(requestCode == Constants.CREATION_REQUEST_CODE){
+			if (resultCode == Constants.IMMEDIATE_SESSION_CREATION_RESULT) {
+				//immediate creation
+				String name = intent.getStringExtra(Constants.INTENT_LABEL_NAME);
+				//null rate by default
+				int rate = intent.getIntExtra(Constants.INTENT_LABEL_RATE,0);     
+				//preparing session
+				onImmediateSessionCreationReady(name,rate);
+			}else if (resultCode == Constants.PREPARED_SESSION_CREATION_RESULT) {
+				//prepared Creation
+				String name = intent.getStringExtra(Constants.INTENT_LABEL_NAME);
+				//null rate by default
+				int rate = intent.getIntExtra(Constants.INTENT_LABEL_RATE,0);  
+				String password = intent.getStringExtra(Constants.INTENT_LABEL_PASSWORD);
+				String start = intent.getStringExtra(Constants.INTENT_LABEL_STARTING_TIME);
+				String end = intent.getStringExtra(Constants.INTENT_LABEL_ENDING_TIME);
+				//preparing session
+				onPreparedSessionCreationReady(name,rate,password,start,end);
+		    }else if(resultCode == Constants.CONTRIBUTION_RESULT){
+		    	//contribution
+				String publicID = intent.getStringExtra(Constants.INTENT_LABEL_PUBLIC_ID);
+				//null rate by default
+				String password = intent.getStringExtra(Constants.INTENT_LABEL_PASSWORD);     
+				//preparing session
+				onSessionContributionReady(publicID,password);	    	
+		    }
+		}
+	}
+	
 	@Override
 	public void onImmediateSessionCreationReady(String name,int rate) {
 		Log.d(this.getActivityClassName()," called by dialog for Immediate Hosted Session Creation");
@@ -200,8 +236,8 @@ public class MenuActivity extends BaseActivity implements IInputListener{
 	            if (grantResults.length > 0
 	                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 	                // permission was granted
-	    			TrackedSessionCreationDialog dialog = new TrackedSessionCreationDialog();
-	    			dialog.show(getFragmentManager(), "Tracked Fragment Dialog");
+	    	        Intent intent = new Intent(this, TrackedSessionCreationActivity.class);
+	    	        startActivityForResult(intent,Constants.CREATION_REQUEST_CODE);
 	            } else {
 
 	                // permission denied, boo! Disable the
